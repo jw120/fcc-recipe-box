@@ -16,7 +16,8 @@ import recipeBoxApp from './reducers'
 import App from './components/App'
 import './index.css'
 
-let store = createStore(recipeBoxApp)
+// Start up our store and link to Redux DevTools 
+let store = createStore(recipeBoxApp, window.devToolsExtension && window.devToolsExtension())
 
 render(
   <Provider store={store}>
