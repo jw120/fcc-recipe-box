@@ -17,6 +17,7 @@ Implemented with React, redux, React Bootstrap and Immutable. Built with the `cr
 Also we have no flow with `*.test.js`
 * Check markdown formatting of this file
 * Add more tests
+* better way to write first selected test (lambda?)
 
 ## Design
 
