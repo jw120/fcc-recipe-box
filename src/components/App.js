@@ -4,15 +4,15 @@
  *
  */
 
-import React from 'react';
+import React from 'react'
 
 import RecipeBox from '../containers/RecipeBox'
-import './App.css';
+import './App.css'
 
 function App(): React.Element<*> {
   return (
-    <div className="App">
-      <div className="App-header">
+    <div className='App'>
+      <div className='App-header'>
         <h2>Recipe Box</h2>
       </div>
       <RecipeBox />
@@ -20,4 +20,4 @@ function App(): React.Element<*> {
   )
 }
 
-export default App;
+export default App

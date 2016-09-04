@@ -13,9 +13,10 @@ Implemented with React, redux, React Bootstrap and Immutable. Built with the `cr
 
 * Remove ; and ""
 * Do we need PropTypes?
-* Any more we can do with flow? At the moment everything related to redux and (especially) react-redux is unchecked
+* Any more we can do with flow? At the moment everything related to redux and (especially) react-redux is unchecked.
+Also we have no flow with `*.test.js`
 * Check markdown formatting of this file
-* Add tests
+* Add more tests
 
 ## Design
 

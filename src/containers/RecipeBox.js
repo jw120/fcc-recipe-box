@@ -5,7 +5,7 @@
 
 import { connect } from 'react-redux'
 
-import type { State } from "../reducers"
+import type { State } from '../reducers'
 import RecipeList from '../components/RecipeList'
 import { selectRecipe } from '../actions'
 

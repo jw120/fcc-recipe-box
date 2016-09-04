@@ -13,7 +13,7 @@ type SelectRecipeAction = {
 }
 export function selectRecipe(recipe: string): SelectRecipeAction {
   return {
-    type: "SELECT_RECIPE",
+    type: 'SELECT_RECIPE',
     recipe
   }
 }
@@ -22,7 +22,7 @@ export function selectRecipe(recipe: string): SelectRecipeAction {
  * Add a recipe
  */
 type AddRecipeAction = {
-  type: "ADD_RECIPE",
+  type: 'ADD_RECIPE',
   recipe: string
 }
 export function addRecipe(recipe: string): AddRecipeAction {

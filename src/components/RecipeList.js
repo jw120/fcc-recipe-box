@@ -14,9 +14,9 @@ type RecipeListProps = {
 function Recipe({ recipe, selected, onSelect }): React.Element<*> {
   return (
     <li onClick={() => onSelect(recipe)}>
-      { recipe + (recipe === selected ? " (Selected)" : "") }
+      { recipe + (recipe === selected ? ' (Selected)' : '') }
     </li>
-  );
+  )
 }
 
 function RecipeList(props: RecipeListProps): React.Element<*> {
