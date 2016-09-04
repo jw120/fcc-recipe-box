@@ -11,18 +11,21 @@ Implemented with React, redux, React Bootstrap and Immutable. Built with the `cr
 * Work out containers/components hierarchy
 * Work out bootstrap components to use
 
-* Check formatting of this file
+* Redux debugging support
+* Do we need PropTypes?
+* Any more we can do with flow? At the moment everything related to redux and (especially) react-redux is unchecked
+* Check markdown formatting of this file
 * Add tests
 
 ## Design
 
 Hierarchy of containers/components
 * App
-  + RecipeList
+  + RecipeBox
     - RecipeName
-    - IngredientsList
-    - IngredientsControl
-    - IngredientsModal
+    - if selected: IngredientsList
+    - if selected: IngredientsControl
+    - if selected: IngredientsModal
   + RecipeControls
   + AddRecipeModal
 

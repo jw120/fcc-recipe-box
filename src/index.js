@@ -1,6 +1,6 @@
 /** @flow
  *
- * Overall entry point
+ * Overall entry point for React, sets up redux store and react-redux Provider
  *
  */
 
@@ -13,7 +13,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 // import 'bootstrap/dist/css/bootstrap-theme.css' // optional?
 
 import recipeBoxApp from './reducers'
-import App from './App'
+import App from './components/App'
 import './index.css'
 
 let store = createStore(recipeBoxApp)
