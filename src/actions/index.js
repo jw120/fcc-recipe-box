@@ -48,14 +48,30 @@ export function changeModal(target: 'ADD_RECIPE' | 'EDIT_RECIPE', open: boolean)
   }
 }
 
+/**
+ * Update the value entered in our New Recipe entry form
+ */
+type UpdateEntryAction = {
+  type: 'UPDATE_ENTRY',
+  value: string
+}
+export function updateEntry(value: string) {
+  return {
+    type: 'UPDATE_ENTRY',
+    value
+  }
+}
+
 export type Action
   = SelectRecipeAction
   | AddRecipeAction
   | ChangeModalAction
+  | UpdateEntryAction
 
 /* Types for our actionCreators after they are wrapped in store.dispatch by react-redux's connect and injected as props */
 export type WrappedActionProps = {
   selectRecipe: (recipe: string) => void,
   addRecipe: (recipe: string) => void,
-  changeModal: (target: 'ADD_RECIPE' | 'EDIT_RECIPE', open: boolean) => void
+  changeModal: (target: 'ADD_RECIPE' | 'EDIT_RECIPE', open: boolean) => void,
+  updateEntry: (value: string) => void
 }

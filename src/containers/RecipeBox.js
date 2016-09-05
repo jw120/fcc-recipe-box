@@ -14,7 +14,8 @@ function mapStateToProps(state: State)  {
   return {
     recipes: state.recipes,
     selected: state.selected,
-    modal: state.modal
+    modal: state.modal,
+    entryValue: state.entryValue
   }
 }
 

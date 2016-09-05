@@ -8,9 +8,9 @@ Implemented with React, redux, React Bootstrap and Immutable. Built with the `cr
 ## TODO
 
 * Work through version without ingredients
-  + Fix Modal
-  + Add Data entry
-  + Design (modal only for confirmation)
+  + Data entry box to add a recipe
+  + Confirmation box before confirming add
+* Design (modal only for confirmation) - including allowing for recipe editting
 * Tidy/document
 * Read react/redux tutorial again - work out its Hierarchy
 * Work out containers/components hierarchy
