@@ -37,7 +37,7 @@ function RecipeList(props: RecipeListProps & WrappedActionProps): React.Element<
       </Button>
       { props.modal === 'ADD_RECIPE' &&
         <AddRecipeModal
-          onSave={() => props.addRecipe('new recipe')}
+          onSave={props.addRecipe}
           onClose={() => props.changeModal('ADD_RECIPE', false)}
         /> }
     </div>

@@ -10,6 +10,7 @@ Implemented with React, redux, React Bootstrap and Immutable. Built with the `cr
 * Work through version without ingredients
   + Fix Modal
   + Add Data entry
+  + Design (modal only for confirmation)
 * Tidy/document
 * Read react/redux tutorial again - work out its Hierarchy
 * Work out containers/components hierarchy
