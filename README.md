@@ -7,17 +7,29 @@ Implemented with React, redux, React Bootstrap and Immutable. Built with the `cr
 
 ## TODO
 
+* Work through version without ingredients
+  + Fix Modal
+  + Add Data entry
+* Tidy/document
 * Read react/redux tutorial again - work out its Hierarchy
 * Work out containers/components hierarchy
 * Work out bootstrap components to use
 
 * Remove ; and ""
+* Decide where to keep css (one file, or many?)
 * Do we need PropTypes?
 * Any more we can do with flow? At the moment everything related to redux and (especially) react-redux is unchecked.
 Also we have no flow with `*.test.js`
 * Check markdown formatting of this file
 * Add more tests
 * better way to write first selected test (lambda?)
+
+# Notes
+
+Compared to our TypeScript/VS Code setup
+* No docs on mouseover
+* No type checking of imports on libraries (e.g., using { } vs default, or importing from the wrong library)
+* Primitive git support
 
 ## Design
 

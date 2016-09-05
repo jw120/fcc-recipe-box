@@ -1,32 +1,46 @@
 /** @flow
  *
- *
+ * Main presentational component.
  */
 
 import React from 'react'
+import { Button } from 'react-bootstrap'
 
 import Recipe from './Recipe'
+import AddRecipeModal from './AddRecipeModal'
+import type { ModalState } from '../reducers/modal'
+import type { WrappedActionProps } from '../actions'
 
 type RecipeListProps = {
   recipes: string[],
   selected: ?string,
-  onSelect: (recipe: string) => void
+  modal: ModalState,
 }
 
-function RecipeList(props: RecipeListProps): React.Element<*> {
+function RecipeList(props: RecipeListProps & WrappedActionProps): React.Element<*> {
   return (
-    <ul>
-      { props.recipes.map((r: string, i: number) => {
-        return (
-          <Recipe
-            recipe={r}
-            isSelected={props.selected === r}
-            onSelect={() => props.onSelect(r)}
-            key={i}
-          />
-        )
-      })}
-    </ul>
+    <div>
+      <ul>
+        { props.recipes.map((r: string, i: number) => {
+          return (
+            <Recipe
+              recipe={r}
+              isSelected={props.selected === r}
+              onSelect={() => props.selectRecipe(r)}
+              key={i}
+            />
+          )
+        })}
+      </ul>
+      <Button onClick={() => props.changeModal('ADD_RECIPE', true)}>
+        Add Recipe
+      </Button>
+      { props.modal === 'ADD_RECIPE' &&
+        <AddRecipeModal
+          onSave={() => props.addRecipe('new recipe')}
+          onClose={() => props.changeModal('ADD_RECIPE', false)}
+        /> }
+    </div>
   )
 }
 
