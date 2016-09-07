@@ -12,7 +12,7 @@ import AddRecipeModal from './AddRecipeModal'
 import type { ModalState } from '../reducers/modal'
 import type { WrappedActionProps } from '../actions'
 
-type RecipeListProps = {
+export type RecipeListProps = {
   recipes: string[],
   selected: ?string,
   modal: ModalState,
@@ -40,6 +40,7 @@ function RecipeList(props: RecipeListProps & WrappedActionProps): React.Element<
       <RecipeEntryForm
         value={props.entryValue}
         onChange={props.updateEntry}
+        onSubmit={() => props.addRecipe(props.entryValue)}
       />
       { props.modal === 'ADD_RECIPE' &&
         <AddRecipeModal

@@ -1,3 +1,5 @@
+// @ flow
+
 import recipes from './recipes'
 import { addRecipe } from '../actions'
 

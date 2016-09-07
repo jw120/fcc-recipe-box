@@ -5,7 +5,7 @@
 
 import React from 'react'
 
-import { Button, Modal } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 type AddRecipeModalProps = {
   onSave: (recipe: string) => void,
@@ -13,17 +13,15 @@ type AddRecipeModalProps = {
 }
 
 function AddRecipeModal(props: AddRecipeModalProps): React.Element<*> {
-/*
-
   return (
     <div>
       <h2>Add Recipe Modal</h2>
       <Button onClick={props.onClose}>Close</Button>
     </div>
   )
-*/
 
 
+/*
   return (
       <Modal.Dialog>
         <Modal.Header>
@@ -41,6 +39,7 @@ function AddRecipeModal(props: AddRecipeModalProps): React.Element<*> {
 
       </Modal.Dialog>
   )
+  */
 }
 
 export default AddRecipeModal

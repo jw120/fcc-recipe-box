@@ -1,6 +1,6 @@
 /** @flow
  *
- * Action creators
+ * Provides Action creators and our Action type
  *
  */
 
@@ -40,7 +40,7 @@ type ChangeModalAction = {
   target: 'ADD_RECIPE' | 'EDIT_RECIPE',
   open: boolean
 }
-export function changeModal(target: 'ADD_RECIPE' | 'EDIT_RECIPE', open: boolean) {
+export function changeModal(target: 'ADD_RECIPE' | 'EDIT_RECIPE', open: boolean): ChangeModalAction {
   return {
     type: 'CHANGE_MODAL',
     target,
@@ -55,7 +55,7 @@ type UpdateEntryAction = {
   type: 'UPDATE_ENTRY',
   value: string
 }
-export function updateEntry(value: string) {
+export function updateEntry(value: string): UpdateEntryAction {
   return {
     type: 'UPDATE_ENTRY',
     value
@@ -65,10 +65,9 @@ export function updateEntry(value: string) {
 export type Action
   = SelectRecipeAction
   | AddRecipeAction
-  | ChangeModalAction
   | UpdateEntryAction
+  | ChangeModalAction
 
-/* Types for our actionCreators after they are wrapped in store.dispatch by react-redux's connect and injected as props */
 export type WrappedActionProps = {
   selectRecipe: (recipe: string) => void,
   addRecipe: (recipe: string) => void,

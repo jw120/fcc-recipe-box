@@ -1,3 +1,5 @@
+// @ flow
+
 import selected from './selected'
 import { selectRecipe } from '../actions'
 

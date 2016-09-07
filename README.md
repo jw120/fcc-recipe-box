@@ -5,10 +5,21 @@ in the browser's local storage.
 
 Implemented with React, redux, React Bootstrap and Immutable. Built with the `create-react-app` initial boilerplate adding flow.
 
+Flow is now working with full coverage - except for react-redux functions (connect and Provider). Flow issues
+
+* Does not catch extra props added in JSX (does catch missing props)
+* Does not fail if we import a type which is not exported
+
 ## TODO
 
+* Re-factor appstate in state
+* Define widget tree in React
+* Add basic css
+* Implement
+* Tidy code
+
 * Work through version without ingredients
-  + Data entry box to add a recipe
+  + Data entry box to add a recipe (get submit to work)
   + Confirmation box before confirming add
 * Design (modal only for confirmation) - including allowing for recipe editting
 * Tidy/document
