@@ -1,0 +1,15 @@
+.RecipeList {
+  padding: 4px;
+}
+
+.RecipeList-Frame {
+  background-color: lightgrey;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}

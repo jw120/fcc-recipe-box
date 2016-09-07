@@ -4,6 +4,7 @@
  */
 
 import React from 'react'
+import './Recipe.css'
 
 type RecipeProps = {
   recipe: string,
@@ -13,9 +14,9 @@ type RecipeProps = {
 
 function Recipe({ recipe, isSelected, onSelect }: RecipeProps): React.Element<*> {
   return (
-    <li onClick={() => onSelect(recipe)}>
+    <div className="Recipe" onClick={() => onSelect(recipe)}>
       { recipe + (isSelected ? ' (Selected)' : '') }
-    </li>
+    </div>
   )
 }
 

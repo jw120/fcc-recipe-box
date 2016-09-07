@@ -7,25 +7,17 @@ Implemented with React, redux, React Bootstrap and Immutable. Built with the `cr
 
 Flow is now working with full coverage - except for react-redux functions (connect and Provider). Flow issues
 
+* No coverage for react-redux
 * Does not catch extra props added in JSX (does catch missing props)
 * Does not fail if we import a type which is not exported
 
 ## TODO
 
-* Re-factor appstate in state
-* Define widget tree in React
-* Add basic css
-* Implement
+* Re-factor appstate in state - separate UI
+* Is there any flow-type for react-bootstrap
 * Tidy code
-
-* Work through version without ingredients
-  + Data entry box to add a recipe (get submit to work)
-  + Confirmation box before confirming add
-* Design (modal only for confirmation) - including allowing for recipe editting
-* Tidy/document
-* Read react/redux tutorial again - work out its Hierarchy
-* Work out containers/components hierarchy
-* Work out bootstrap components to use
+* Add ingredients
+* Add localStorage
 
 * Remove ; and ""
 * Decide where to keep css (one file, or many?)

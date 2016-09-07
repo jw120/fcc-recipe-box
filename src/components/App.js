@@ -13,7 +13,7 @@ function App(): React.Element<*> {
   return (
     <div className='App'>
       <div className='App-header'>
-        <h2>Recipe Box</h2>
+        Recipe Box
       </div>
       <RecipeBox />
     </div>

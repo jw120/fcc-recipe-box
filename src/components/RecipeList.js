@@ -1,16 +1,17 @@
 /** @flow
  *
- * Main presentational component.
+ * Main presentational component
  */
 
 import React from 'react'
 import { Button } from 'react-bootstrap'
 
 import Recipe from './Recipe'
-import RecipeEntryForm from './RecipeEntryForm'
+// import RecipeEntryForm from './RecipeEntryForm'
 import AddRecipeModal from './AddRecipeModal'
 import type { ModalState } from '../reducers/modal'
 import type { WrappedActionProps } from '../actions'
+import './RecipeList.css'
 
 export type RecipeListProps = {
   recipes: string[],
@@ -21,8 +22,8 @@ export type RecipeListProps = {
 
 function RecipeList(props: RecipeListProps & WrappedActionProps): React.Element<*> {
   return (
-    <div>
-      <ul>
+    <div className="RecipeList">
+      <div className="RecipeList-Frame">
         { props.recipes.map((r: string, i: number) => {
           return (
             <Recipe
@@ -32,23 +33,43 @@ function RecipeList(props: RecipeListProps & WrappedActionProps): React.Element<
               key={i}
             />
           )
-        })}
-      </ul>
-      <Button onClick={() => props.changeModal('ADD_RECIPE', true)}>
-        Add Recipe
-      </Button>
-      <RecipeEntryForm
-        value={props.entryValue}
-        onChange={props.updateEntry}
-        onSubmit={() => props.addRecipe(props.entryValue)}
-      />
-      { props.modal === 'ADD_RECIPE' &&
+          })}
+      </div>
+      { props.modal === 'ADD_RECIPE' ?
         <AddRecipeModal
-          onSave={props.addRecipe}
-          onClose={() => props.changeModal('ADD_RECIPE', false)}
-        /> }
+          onSubmit={(recipe: string) => {
+            props.changeModal('ADD_RECIPE', false)
+            props.addRecipe(recipe)
+            props.updateEntry("")
+          }}
+          onCancel={() => {
+            props.changeModal('ADD_RECIPE', false)
+            props.updateEntry("")
+          }}
+          onChange={props.updateEntry}
+          value={props.entryValue}
+        /> :
+        <Button
+          onClick={() => props.changeModal('ADD_RECIPE', true)}
+          bsStyle="primary"
+        >
+          Add Recipe
+          </Button>
+      }
     </div>
   )
 }
 
 export default RecipeList
+
+
+/*
+
+<RecipeEntryForm
+  value={props.entryValue}
+  onChange={props.updateEntry}
+  onSubmit={() => props.addRecipe(props.entryValue)}
+/>
+
+
+  */
