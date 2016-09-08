@@ -11,7 +11,7 @@ import { createStore } from 'redux'
 import type { Store } from 'redux'
 
 import 'bootstrap/dist/css/bootstrap.css'
-// import 'bootstrap/dist/css/bootstrap-theme.css' // optional?
+import 'bootstrap/dist/css/bootstrap-theme.css' // optional?
 
 import recipeBoxApp from './reducers/index'
 import App from './components/App'

@@ -4,69 +4,34 @@
  *
  */
 
-/**
- * Select a recipe
- */
-type SelectRecipeAction = {
-  type: 'SELECT_RECIPE',
-  payload: string
+type SpecificAction<T, P> = {
+  type: T,
+  payload: P
 }
-export function selectRecipe(recipe: string): SelectRecipeAction {
-  return {
-    type: 'SELECT_RECIPE',
-    payload: recipe
+
+function makeActionCreator<T, P>(type: T): ((payload: P) => { type: T, payload: P }) {
+  return function(payload: P) {
+    return { type, payload }
   }
 }
 
-/**
- * Add a recipe
- */
-type AddRecipeAction = {
-  type: 'ADD_RECIPE',
-  payload: string
-}
-export function addRecipe(recipe: string): AddRecipeAction {
-  return {
-    type: 'ADD_RECIPE',
-    payload: recipe
-  }
-}
+/** Select a recipe */
+type SelectRecipeAction = SpecificAction<'SELECT_RECIPE', string>
+export const selectRecipe: ((recipe: string) => SelectRecipeAction)  = makeActionCreator('SELECT_RECIPE')
 
-/**
- * SetModal
- */
+/** Add a recipe */
+type AddRecipeAction = SpecificAction<'ADD_RECIPE', string>
+export const addRecipe: ((recipe: string) => AddRecipeAction) = makeActionCreator('ADD_RECIPE')
+
+/** Set the state of our modals */
 import type { ModalState } from './reducers/modal'
-type SetModalAction = {
-  type: 'SET_MODAL',
-  payload: ModalState
-}
-export function setModal(modal: ModalState): SetModalAction {
-  return {
-    type: 'SET_MODAL',
-    payload: modal
-  }
-}
+type SetModalAction = SpecificAction<'SET_MODAL', ModalState>
+export const setModal: ((modal: ModalState) => SetModalAction) = makeActionCreator('SET_MODAL')
 
-/**
- * Set a form value
- */
+/** Set a form value */
 import type { FormKey } from './reducers/forms'
-type SetFormAction = {
-  type: 'SET_FORM',
-  payload: {
-    key: FormKey,
-    value: string
-  }
-}
-export function setForm(key: FormKey, value: string): SetFormAction {
-  return {
-    type: 'SET_FORM',
-    payload: {
-      key,
-      value
-    }
-  }
-}
+type SetFormAction = SpecificAction<'SET_FORM', { key: FormKey, value: string}>
+export const setForm: (key: FormKey, value: string) => SetFormAction = (key, value) => makeActionCreator('SET_FORM')({ key, value })
 
 export type Action
   = SelectRecipeAction

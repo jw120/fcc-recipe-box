@@ -21,6 +21,7 @@ Flow is now working with full coverage - except for react-redux functions (conne
 * Add localStorage
 
 * Remove ; and ""
+* Can we use exact types {| |} - seems not supported by current babel
 * Decide where to keep css (one file, or many?)
 * Do we need PropTypes?
 * Any more we can do with flow? At the moment everything related to redux and (especially) react-redux is unchecked.
