@@ -1,5 +1,6 @@
 /** @flow
  *
+ * Component which renders the modal to edit a recipe
  *
  */
 
@@ -9,18 +10,19 @@ import { Button, Modal, FormGroup, FormControl, ControlLabel } from 'react-boots
 
 import { suppressDefaultAndCall } from '../utils'
 
-type AddRecipeModalProps = {
+type EditRecipeModalProps = {
+  title: string,
   onSubmit: (value: ?string) => void,
   onCancel: () => void,
   onChange: (value: ?string) => void,
   value: ?string
 }
 
-function AddRecipeModal(props: AddRecipeModalProps): React.Element<*> {
+function EditRecipeModal(props: EditRecipeModalProps): React.Element<*> {
   return (
       <Modal.Dialog>
         <Modal.Header>
-          <Modal.Title>Add Recipe</Modal.Title>
+          <Modal.Title>{props.title}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -50,16 +52,4 @@ function AddRecipeModal(props: AddRecipeModalProps): React.Element<*> {
   )
 }
 
-export default AddRecipeModal
-
-/*
-<Button onClick={props.onClose>Close</Button>
-<Button onClick={props.onSave('Dummy') bsStyle="primary">Save changes</Button>
-
-return (
-  <div>
-    <h2>Add Recipe Modal</h2>
-    <Button onClick={props.onClose}>Close</Button>
-  </div>
-)
-*/
+export default EditRecipeModal

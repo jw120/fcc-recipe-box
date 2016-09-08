@@ -1,6 +1,6 @@
 /** @flow
  *
- *
+ *  Component to render an individual recipe
  */
 
 import React from 'react'

@@ -13,21 +13,18 @@ Flow is now working with full coverage - except for react-redux functions (conne
 
 ## TODO
 
-* Can we sub-divide actions.js
 * Flow-type for react-bootstrap, alternatives?
 * Tidy code
 * Add ingredients
 * Add localStorage
 
 * Other tests
+* Should we do something better with threading state into our components - forms?
 * Remove ; and ""
 * Can we use exact types {| |} - seems not supported by current babel
 * Decide where to keep css (one file, or many?)
 * Do we need PropTypes?
-* Any more we can do with flow? At the moment everything related to redux and (especially) react-redux is unchecked.
-Also we have no flow with `*.test.js`
 * Check markdown formatting of this file
-* Add more tests
 * better way to write first selected test (lambda?)
 
 # Notes
