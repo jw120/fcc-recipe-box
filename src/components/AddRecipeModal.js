@@ -10,10 +10,10 @@ import { Button, Modal, FormGroup, FormControl, ControlLabel } from 'react-boots
 import { suppressDefaultAndCall } from '../utils'
 
 type AddRecipeModalProps = {
-  onSubmit: (value: string) => void,
+  onSubmit: (value: ?string) => void,
   onCancel: () => void,
-  onChange: (value: string) => void,
-  value: string
+  onChange: (value: ?string) => void,
+  value: ?string
 }
 
 function AddRecipeModal(props: AddRecipeModalProps): React.Element<*> {
@@ -29,7 +29,7 @@ function AddRecipeModal(props: AddRecipeModalProps): React.Element<*> {
               <ControlLabel>Enter the name of a new recipe</ControlLabel>
               <FormControl
                 type="text"
-                value={props.value}
+                value={props.value || "" /* default to empty string if no value provided */}
                 placeholder="Enter Recipe name"
                 onChange={(e: Event) => {
                   if (e.target instanceof HTMLInputElement) {

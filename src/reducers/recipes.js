@@ -1,6 +1,6 @@
 /** @flow
  *
- *
+ * Recipe state holds our main app data - the receipes and their ingredients
  *
  */
 
@@ -13,7 +13,7 @@ const initialState = ['Boiled eggs', 'Fish and Chips', 'Tarka Daal']
 function recipes(state: RecipesState = initialState, action: Action): RecipesState {
   switch (action.type) {
     case 'ADD_RECIPE':
-      return state.concat(action.recipe)
+      return state.concat(action.payload)
     default:
       return state
   }

@@ -7,20 +7,12 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 
 import Recipe from './Recipe'
-// import RecipeEntryForm from './RecipeEntryForm'
 import AddRecipeModal from './AddRecipeModal'
-import type { ModalState } from '../reducers/modal'
 import type { WrappedActionProps } from '../actions'
+import type { State } from '../reducers'
 import './RecipeList.css'
 
-export type RecipeListProps = {
-  recipes: string[],
-  selected: ?string,
-  modal: ModalState,
-  entryValue: string,
-}
-
-function RecipeList(props: RecipeListProps & WrappedActionProps): React.Element<*> {
+function RecipeList(props: State & WrappedActionProps): React.Element<*> {
   return (
     <div className="RecipeList">
       <div className="RecipeList-Frame">
@@ -28,29 +20,31 @@ function RecipeList(props: RecipeListProps & WrappedActionProps): React.Element<
           return (
             <Recipe
               recipe={r}
-              isSelected={props.selected === r}
+              isSelected={props.selection === r}
               onSelect={() => props.selectRecipe(r)}
               key={i}
             />
           )
           })}
       </div>
-      { props.modal === 'ADD_RECIPE' ?
+      { props.modal === 'Edit_Recipe_Modal' ?
         <AddRecipeModal
-          onSubmit={(recipe: string) => {
-            props.changeModal('ADD_RECIPE', false)
-            props.addRecipe(recipe)
-            props.updateEntry("")
+          onSubmit={(recipe: ?string) => {
+            props.setModal(null)
+            if (recipe) {
+              props.addRecipe(recipe)
+            }
+            props.setForm('Recipe', '')
           }}
           onCancel={() => {
-            props.changeModal('ADD_RECIPE', false)
-            props.updateEntry("")
+            props.setModal(null)
+            props.setForm('Recipe', '')
           }}
-          onChange={props.updateEntry}
-          value={props.entryValue}
+          onChange={(value: ?string) => props.setForm('Recipe', value || '')}
+          value={props.forms.get('Recipe')}
         /> :
         <Button
-          onClick={() => props.changeModal('ADD_RECIPE', true)}
+          onClick={() => props.setModal('Edit_Recipe_Modal', true)}
           bsStyle="primary"
         >
           Add Recipe

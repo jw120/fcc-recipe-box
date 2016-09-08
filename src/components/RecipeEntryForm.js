@@ -8,7 +8,7 @@ import React from 'react'
 import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap'
 
 type RecipeEntryFormProps = {
-  value: string,
+  value: ?string,
   onChange: (newValue: string) => void,
   onSubmit: () => void
 }
@@ -25,7 +25,7 @@ function RecipeEntryForm(props: RecipeEntryFormProps): React.Element<*> {
         <ControlLabel>Enter the name of a new recipe</ControlLabel>
         <FormControl
           type="text"
-          value={props.value}
+          value={props.value || "" /* default to empty string if no value yet provided */ }
           placeholder="Enter Recipe name"
           onChange={(e: Event) => {
             if (e.target instanceof HTMLInputElement) {

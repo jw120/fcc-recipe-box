@@ -9,12 +9,12 @@
  */
 type SelectRecipeAction = {
   type: 'SELECT_RECIPE',
-  recipe: string
+  payload: string
 }
 export function selectRecipe(recipe: string): SelectRecipeAction {
   return {
     type: 'SELECT_RECIPE',
-    recipe
+    payload: recipe
   }
 }
 
@@ -23,54 +23,60 @@ export function selectRecipe(recipe: string): SelectRecipeAction {
  */
 type AddRecipeAction = {
   type: 'ADD_RECIPE',
-  recipe: string
+  payload: string
 }
 export function addRecipe(recipe: string): AddRecipeAction {
   return {
     type: 'ADD_RECIPE',
-    recipe
+    payload: recipe
   }
 }
 
 /**
- * ChangeModal
+ * SetModal
  */
-type ChangeModalAction = {
-  type: 'CHANGE_MODAL',
-  target: 'ADD_RECIPE' | 'EDIT_RECIPE',
-  open: boolean
+import type { ModalState } from './reducers/modal'
+type SetModalAction = {
+  type: 'SET_MODAL',
+  payload: ModalState
 }
-export function changeModal(target: 'ADD_RECIPE' | 'EDIT_RECIPE', open: boolean): ChangeModalAction {
+export function setModal(modal: ModalState): SetModalAction {
   return {
-    type: 'CHANGE_MODAL',
-    target,
-    open
+    type: 'SET_MODAL',
+    payload: modal
   }
 }
 
 /**
- * Update the value entered in our New Recipe entry form
+ * Set a form value
  */
-type UpdateEntryAction = {
-  type: 'UPDATE_ENTRY',
-  value: string
+import type { FormKey } from './reducers/forms'
+type SetFormAction = {
+  type: 'SET_FORM',
+  payload: {
+    key: FormKey,
+    value: string
+  }
 }
-export function updateEntry(value: string): UpdateEntryAction {
+export function setForm(key: FormKey, value: string): SetFormAction {
   return {
-    type: 'UPDATE_ENTRY',
-    value
+    type: 'SET_FORM',
+    payload: {
+      key,
+      value
+    }
   }
 }
 
 export type Action
   = SelectRecipeAction
   | AddRecipeAction
-  | UpdateEntryAction
-  | ChangeModalAction
+  | SetModalAction
+  | SetFormAction
 
 export type WrappedActionProps = {
   selectRecipe: (recipe: string) => void,
   addRecipe: (recipe: string) => void,
-  changeModal: (target: 'ADD_RECIPE' | 'EDIT_RECIPE', open: boolean) => void,
-  updateEntry: (value: string) => void
+  setModal: (modal: ModalState) => void,
+  setForm: (key: FormKey, value: string) => void
 }

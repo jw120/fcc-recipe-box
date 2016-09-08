@@ -13,8 +13,9 @@ Flow is now working with full coverage - except for react-redux functions (conne
 
 ## TODO
 
-* Re-factor appstate in state - separate UI
-* Is there any flow-type for react-bootstrap
+* tests for all reducers
+* Can we sub-divide actions.js
+* Flow-type for react-bootstrap, alternatives?
 * Tidy code
 * Add ingredients
 * Add localStorage

@@ -7,27 +7,29 @@
 import { combineReducers } from 'redux'
 
 import recipes from './recipes'
-import selected from './selected'
+import selection from './selection'
 import modal from './modal'
-import entryValue from './entryValue'
+import forms from './forms'
+
 import type { RecipesState } from './recipes'
-import type { SelectedState } from './selected'
+import type { SelectionState } from './selection'
 import type { ModalState } from './modal'
-import type { EntryValueState} from './entryValue'
+import type { FormsState} from './forms'
+
 import type { Action } from '../actions'
 
 export type State = {
   recipes: RecipesState,
-  selected: SelectedState,
+  selection: SelectionState,
   modal: ModalState,
-  entryValue: EntryValueState
+  forms: FormsState
 }
 
 const recipeBoxApp: (state: State, action : Action) => State = combineReducers({
   recipes,
-  selected,
+  selection,
   modal,
-  entryValue
+  forms
 })
 
 export default recipeBoxApp
