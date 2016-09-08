@@ -23,5 +23,5 @@ it('does not mutate the original when adding to an array', () => {
 })
 
 it('ignores an unknown action', () => {
-  expect(recipes(['X'], {})).toEqual(['X'])
+  expect(recipes(['X'], { type: 'Unknown' })).toEqual(['X'])
 })

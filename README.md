@@ -13,13 +13,13 @@ Flow is now working with full coverage - except for react-redux functions (conne
 
 ## TODO
 
-* tests for all reducers
 * Can we sub-divide actions.js
 * Flow-type for react-bootstrap, alternatives?
 * Tidy code
 * Add ingredients
 * Add localStorage
 
+* Other tests
 * Remove ; and ""
 * Can we use exact types {| |} - seems not supported by current babel
 * Decide where to keep css (one file, or many?)

@@ -3,11 +3,8 @@
 import selection from './selection'
 import { selectRecipe } from '../actions'
 
-it('turns undefined into a null or string', () => {
-  function isValid(s) {
-    return s === null || typeof s === 'string'
-  }
-  expect(isValid(selection(undefined, {}))).toBe(true)
+it('turns undefined into null', () => {
+  expect(selection(undefined, {})).toBe(null)
 })
 
 it('replaces an existing different recipe', () => {
