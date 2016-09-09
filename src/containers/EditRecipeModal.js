@@ -12,9 +12,11 @@ import { Button, Modal, FormGroup, FormControl, ControlLabel } from 'react-boots
 
 import { setModal, setForm } from '../actions'
 import type { State } from '../reducers'
+import type { Action } from '../actions'
 
 // Properties we inherit from our parent
 type OwnProps = {
+  show: boolean,
   title: string,
   save: (recipe: string) => void
 }
@@ -43,7 +45,7 @@ function handleSubmit(props: OwnProps & PropsFromState & PropsFromDispatch, e: ?
 
 function UnwrappedEditRecipeModal(props: OwnProps & PropsFromState & PropsFromDispatch): React.Element<*> {
   return (
-      <Modal.Dialog>
+      <Modal show={props.show}>
         <Modal.Header>
           <Modal.Title>{props.title}</Modal.Title>
         </Modal.Header>
@@ -57,6 +59,7 @@ function UnwrappedEditRecipeModal(props: OwnProps & PropsFromState & PropsFromDi
                 value={props.value || '' /* default to empty string if no value provided */}
                 placeholder="Enter Recipe name"
                 onChange={props.onChange}
+                autoFocus
               />
             </FormGroup>
           </form>
@@ -67,7 +70,7 @@ function UnwrappedEditRecipeModal(props: OwnProps & PropsFromState & PropsFromDi
           <Button onClick={() => handleSubmit(props)} bsStyle="primary">Save</Button>
         </Modal.Footer>
 
-      </Modal.Dialog>
+      </Modal>
   )
 }
 
@@ -77,7 +80,7 @@ function mapStateToProps(state: State): PropsFromState {
   }
 }
 
-function mapDispatchToProps(dispatch, ownProps): PropsFromDispatch {
+function mapDispatchToProps(dispatch: (action: Action) => void): PropsFromDispatch {
   return {
     clearAndClose: () => {
       dispatch(setForm('Recipe', ''))
@@ -92,6 +95,6 @@ function mapDispatchToProps(dispatch, ownProps): PropsFromDispatch {
   }
 }
 
-const EditRecipeModal: ((props: OwnProps) => React.Element<*>) = connect(mapStateToProps, mapDispatchToProps)(UnwrappedEditRecipeModal)
+const EditRecipeModal = connect(mapStateToProps, mapDispatchToProps)(UnwrappedEditRecipeModal)
 
 export default EditRecipeModal

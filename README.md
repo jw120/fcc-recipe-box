@@ -5,15 +5,14 @@ in the browser's local storage.
 
 Implemented with React, redux, React Bootstrap and Immutable. Built with the `create-react-app` initial boilerplate adding flow.
 
-Flow is now working with full coverage - except for react-redux functions (connect and Provider). Flow issues
+Flow is now working with full coverage - except for the `Modal` from react-bootstrap. Needs `flow-typed` definitions for `jest`, `redux` and `react-redux` to be installed. Note also
 
-* No coverage for react-redux
 * Does not catch extra props added in JSX (does catch missing props)
 * Does not fail if we import a type which is not exported
 
 ## TODO
 
-* Try flow-types again
+* Auto-focus the modal's form when opening it
 * Flow-type for react-bootstrap, alternatives?
 * Tidy code
 * Add ingredients

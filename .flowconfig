@@ -3,4 +3,4 @@
 <PROJECT_ROOT>/downloaded/*
 
 [libs]
-src/libdefs/
+src/flow-defs

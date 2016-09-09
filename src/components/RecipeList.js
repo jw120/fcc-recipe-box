@@ -35,9 +35,7 @@ function RecipeList(props: State & WrappedActionProps): React.Element<*> {
       <Button onClick={() => props.setModal('Edit_Recipe_Modal', true)} bsStyle="primary">
         Add Recipe
       </Button>
-      { props.modal === 'Edit_Recipe_Modal' &&
-        <EditRecipeModal title="Add Recipe" save={props.addRecipe}/>
-      }
+      <EditRecipeModal show={props.modal === 'Edit_Recipe_Modal'} title="Add Recipe" save={props.addRecipe}/>
     </div>
   )
 }

@@ -3,4 +3,5 @@ coverage
 build
 .DS_Store
 npm-debug.log
+flow-typed
 downloaded
