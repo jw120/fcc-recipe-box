@@ -15,7 +15,8 @@ Flow is now working with full coverage - except for the `Modal` from react-boots
 ## TODO
 
 * Add ingredients
-   + Render ingredients list
+   + DONE Render ingredients list
+   + Wire buttons in ingredients list
    + Extend modal to add ingredients
    + Add edit recipe button
    + Add delete recipe Button

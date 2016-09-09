@@ -1,5 +1,18 @@
 .Recipe {
-  padding: 5px;
-  margin: 2px;
-  border-radius: 2px;
+  margin: 5px;
+}
+
+.Recipe-Name {
+  height: 25pt;
+  padding-top: 7px;
+  padding-left: 6px;
+  border-radius: 3px;
+}
+
+.Recipe .btn-toolbar {
+  margin-left: 10px;
+}
+
+.Recipe .btn {
+  width: 100px;
 }

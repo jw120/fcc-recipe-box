@@ -13,12 +13,18 @@ import type { State } from '../reducers'
 import './RecipeList.css'
 
 function RecipeList(props: State & WrappedActionProps): React.Element<*> {
-  let keys: string[] = Array.from(props.recipes.keys())
+  let kvs: Array<[string, Array<string>]> = Array.from(props.recipes.entries())
   return (
     <div className='RecipeList'>
       <div className='RecipeList-Frame'>
-        { keys.map((r: string, i: number) =>
-            <Recipe recipe={r} key={i} isSelected={props.selection === r} onSelect={() => props.selectRecipe(r)} />)
+        { kvs.map((kv, i) =>
+            <Recipe
+              recipe={kv[0]}
+              ingredients={kv[1]}
+              key={kv[0]}
+              isSelected={props.selection === kv[0]}
+              onSelect={() => props.selectRecipe(kv[0])}
+            />)
         }
       </div>
       <Button onClick={() => props.setModal('Edit_Recipe_Modal', true)} bsStyle='primary'>
