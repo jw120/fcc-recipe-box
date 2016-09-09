@@ -13,6 +13,7 @@ Flow is now working with full coverage - except for react-redux functions (conne
 
 ## TODO
 
+* Try flow-types again
 * Flow-type for react-bootstrap, alternatives?
 * Tidy code
 * Add ingredients
