@@ -13,20 +13,21 @@ type RecipeProps = {
   recipe: string,
   ingredients: string[],
   isSelected: boolean,
-  onSelect: () => void
+  onSelect: () => void,
+  onEdit: () => void
 }
 
-function Recipe({ recipe, ingredients, isSelected, onSelect }: RecipeProps): React.Element<*> {
-  let colourClass = isSelected ? 'bg-primary' : 'bg-info' // Colour using Bootstrap theme colours
+function Recipe(props: RecipeProps): React.Element<*> {
+  let colourClass = props.isSelected ? 'bg-primary' : 'bg-info' // Colour using Bootstrap theme colours
   return (
     <div className='Recipe'>
-      <div className={'Recipe-Name ' + colourClass} onClick={() => onSelect(recipe)}>
-        { recipe }
+      <div className={'Recipe-Name ' + colourClass} onClick={props.onSelect}>
+        { props.recipe }
       </div>
-      { isSelected && <IngredientList ingredients={ingredients} />}
-      { isSelected &&
+      { props.isSelected && <IngredientList ingredients={props.ingredients} />}
+      { props.isSelected &&
           <ButtonToolbar>
-            <Button bsSize="small">
+            <Button bsSize="small" onClick={props.onEdit}>
               Edit Recipe
             </Button>
             <Button bsSize="small" bsStyle="danger">

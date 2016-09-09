@@ -7,10 +7,24 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 
 import Recipe from './Recipe'
-import EditRecipeModal from '../containers/EditRecipeModal'
+import RecipeModal from '../containers/RecipeModal'
 import type { WrappedActionProps } from '../actions'
 import type { State } from '../reducers'
 import './RecipeList.css'
+
+function openAddModal(props: State & WrappedActionProps) {
+  props.setModal('Add_Recipe_Modal')
+  console.log("openAddModal", props.modal)
+}
+
+function openEditModal(props: State & WrappedActionProps) {
+  if (props.selection) {
+    let selection: string = props.selection
+    props.setForm('Recipe', selection)
+    props.setForm('Ingredients', props.recipes.get(selection).join(', '))
+    props.setModal('Edit_Recipe_Modal')
+  }
+}
 
 function RecipeList(props: State & WrappedActionProps): React.Element<*> {
   let kvs: Array<[string, Array<string>]> = Array.from(props.recipes.entries())
@@ -24,13 +38,18 @@ function RecipeList(props: State & WrappedActionProps): React.Element<*> {
               key={kv[0]}
               isSelected={props.selection === kv[0]}
               onSelect={() => props.selectRecipe(kv[0])}
+              onEdit={() => openEditModal(props)}
             />)
         }
       </div>
-      <Button onClick={() => props.setModal('Edit_Recipe_Modal', true)} bsStyle='primary'>
+      <Button onClick={() => openAddModal(props)} bsStyle='primary'>
         Add Recipe
       </Button>
-      <EditRecipeModal show={props.modal === 'Edit_Recipe_Modal'} title='Add Recipe' save={props.addRecipe}/>
+      <RecipeModal
+        show={props.modal !== null}
+        title={props.modal === 'Edit_Recipe_Modal' ? 'Edit recipe' : 'Add a new ecipe'}
+        save={props.addRecipe}
+      />
     </div>
   )
 }

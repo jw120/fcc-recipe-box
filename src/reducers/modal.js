@@ -7,7 +7,7 @@
 
 import type { Action } from '../actions'
 
-export type ModalState = 'Edit_Recipe_Modal' | null
+export type ModalState = 'Add_Recipe_Modal' | 'Edit_Recipe_Modal' | null
 
 const initialState = null
 

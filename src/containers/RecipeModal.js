@@ -23,30 +23,31 @@ type OwnProps = {
 
 // Properties injected from State
 type PropsFromState = {
-  value: string
+  recipeValue: string,
+  ingredientsValue: string
 }
 
 // Properties injected from Dispatch
 type PropsFromDispatch = {
   clearAndClose: () => void,
-  onChange: (e: Event) => void
+  onRecipeChange: (e: Event) => void,
+  onIngredientsChange: (e: Event) => void
 }
 
-const formKey = 'Recipe'
-
-/** Helper function to wrap the provided onSubmit prop */
+/** Helper function to wrap the provided save prop */
 function handleSubmit(props: OwnProps & PropsFromState & PropsFromDispatch, e: ?Event) {
   if (e) {
     e.preventDefault()
   }
-  let recipe = props.value
+  let recipe = props.recipeValue
+  let ingredients = props.ingredientsValue
   if (recipe && recipe.trim()) { // add the recipe if we have one
-    props.save(recipe.trim(), 'Dummy')
+    props.save(recipe.trim(), ingredients)
   }
   props.clearAndClose()
 }
 
-function UnwrappedEditRecipeModal(props: OwnProps & PropsFromState & PropsFromDispatch): React.Element<*> {
+function UnwrappedRecipeModal(props: OwnProps & PropsFromState & PropsFromDispatch): React.Element<*> {
   return (
       <Modal show={props.show}>
         <Modal.Header>
@@ -59,10 +60,19 @@ function UnwrappedEditRecipeModal(props: OwnProps & PropsFromState & PropsFromDi
               <ControlLabel>Enter the name of a new recipe</ControlLabel>
               <FormControl
                 type='text'
-                value={props.value || '' /* default to empty string if no value provided */}
+                value={props.recipeValue|| '' /* default to empty string if no value provided */}
                 placeholder='Enter Recipe name'
-                onChange={props.onChange}
+                onChange={props.onRecipeChange}
                 autoFocus
+              />
+            </FormGroup>
+            <FormGroup>
+              <ControlLabel>Enter ingredients</ControlLabel>
+              <FormControl
+                type='text'
+                value={props.ingredientsValue || '' /* default to empty string if no value provided */}
+                placeholder='Enter ingredients'
+                onChange={props.onIngredientsChange}
               />
             </FormGroup>
           </form>
@@ -79,25 +89,33 @@ function UnwrappedEditRecipeModal(props: OwnProps & PropsFromState & PropsFromDi
 
 function mapStateToProps(state: State): PropsFromState {
   return {
-    value: state.forms.get(formKey) || ''
+    recipeValue: state.forms.get('Recipe') || '',
+    ingredientsValue: state.forms.get('Ingredients') || ''
   }
 }
 
 function mapDispatchToProps(dispatch: (action: Action) => void): PropsFromDispatch {
   return {
     clearAndClose: () => {
-      dispatch(setForm(formKey, ''))
+      dispatch(setForm('Recipe', ''))
+      dispatch(setForm('Ingredients', ''))
       dispatch(setModal(null)) // close the modal
     },
-    onChange: (e) => {
+    onRecipeChange: (e) => {
       e.preventDefault()
       if (e.target instanceof HTMLInputElement) {
-        dispatch(setForm(formKey, e.target.value || '')) // update the form entry value, defaulting to an empty string
+        dispatch(setForm('Recipe', e.target.value || '')) // update the form entry value, defaulting to an empty string
+      }
+    },
+    onIngredientsChange: (e) => {
+      e.preventDefault()
+      if (e.target instanceof HTMLInputElement) {
+        dispatch(setForm('Ingredients', e.target.value || '')) // update the form entry value, defaulting to an empty string
       }
     }
   }
 }
 
-const EditRecipeModal = connect(mapStateToProps, mapDispatchToProps)(UnwrappedEditRecipeModal)
+const RecipeModal = connect(mapStateToProps, mapDispatchToProps)(UnwrappedRecipeModal)
 
-export default EditRecipeModal
+export default RecipeModal

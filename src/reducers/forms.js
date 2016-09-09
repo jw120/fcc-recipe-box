@@ -6,7 +6,7 @@
 
 import type { Action } from '../actions'
 
-export type FormKey = 'Recipe' // Forms for which we hold the current entry value as state
+export type FormKey = 'Recipe' | 'Ingredients' 
 
 export type FormsState =  Map<FormKey, string>
 

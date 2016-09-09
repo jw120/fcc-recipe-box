@@ -16,9 +16,9 @@ Flow is now working with full coverage - except for the `Modal` from react-boots
 
 * Add ingredients
    + DONE Render ingredients list
-   + Wire buttons in ingredients list
-   + Extend modal to add ingredients
-   + Add edit recipe button
+   + DONE out logic for edit Button
+   + Tidy wording of modal labels/comment code for modal
+   + Pressing enter in edit modal should submit
    + Add delete recipe Button
    + Add delete recipe confirmation modal
 * Add localStorage
