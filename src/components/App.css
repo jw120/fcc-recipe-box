@@ -1,7 +1,5 @@
-.App-header {
-  padding: 5px;
-  margin-bottom: 5px;
-  text-align: center;
-  font-size: 14pt;
-  font-weight: bold;
+.App {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }

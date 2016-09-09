@@ -32,6 +32,9 @@ type PropsFromDispatch = {
   onChange: (e: Event) => void
 }
 
+const formKey = 'Recipe'
+
+/** Helper function to wrap the provided onSubmit prop */
 function handleSubmit(props: OwnProps & PropsFromState & PropsFromDispatch, e: ?Event) {
   if (e) {
     e.preventDefault()
@@ -55,9 +58,9 @@ function UnwrappedEditRecipeModal(props: OwnProps & PropsFromState & PropsFromDi
             <FormGroup>
               <ControlLabel>Enter the name of a new recipe</ControlLabel>
               <FormControl
-                type="text"
+                type='text'
                 value={props.value || '' /* default to empty string if no value provided */}
-                placeholder="Enter Recipe name"
+                placeholder='Enter Recipe name'
                 onChange={props.onChange}
                 autoFocus
               />
@@ -67,7 +70,7 @@ function UnwrappedEditRecipeModal(props: OwnProps & PropsFromState & PropsFromDi
 
         <Modal.Footer>
           <Button onClick={props.clearAndClose}>Cancel</Button>
-          <Button onClick={() => handleSubmit(props)} bsStyle="primary">Save</Button>
+          <Button onClick={() => handleSubmit(props)} bsStyle='primary'>Save</Button>
         </Modal.Footer>
 
       </Modal>
@@ -76,20 +79,20 @@ function UnwrappedEditRecipeModal(props: OwnProps & PropsFromState & PropsFromDi
 
 function mapStateToProps(state: State): PropsFromState {
   return {
-    value: state.forms.get('Recipe') || ''
+    value: state.forms.get(formKey) || ''
   }
 }
 
 function mapDispatchToProps(dispatch: (action: Action) => void): PropsFromDispatch {
   return {
     clearAndClose: () => {
-      dispatch(setForm('Recipe', ''))
+      dispatch(setForm(formKey, ''))
       dispatch(setModal(null)) // close the modal
     },
     onChange: (e) => {
       e.preventDefault()
       if (e.target instanceof HTMLInputElement) {
-        dispatch(setForm('Recipe', e.target.value || '')) // update the form entry value, defaulting to an empty string
+        dispatch(setForm(formKey, e.target.value || '')) // update the form entry value, defaulting to an empty string
       }
     }
   }

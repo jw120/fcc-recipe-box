@@ -12,9 +12,6 @@ Flow is now working with full coverage - except for the `Modal` from react-boots
 
 ## TODO
 
-* Auto-focus the modal's form when opening it
-* Flow-type for react-bootstrap, alternatives?
-* Tidy code
 * Add ingredients
 * Add localStorage
 

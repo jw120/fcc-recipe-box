@@ -13,9 +13,10 @@ type RecipeProps = {
 }
 
 function Recipe({ recipe, isSelected, onSelect }: RecipeProps): React.Element<*> {
+  let colourClass = isSelected ? 'bg-primary' : 'bg-info' // Colour using Bootstrap theme colours
   return (
-    <div className="Recipe" onClick={() => onSelect(recipe)}>
-      { recipe + (isSelected ? ' (Selected)' : '') }
+    <div className={'Recipe bg ' + colourClass} onClick={() => onSelect(recipe)}>
+      { recipe }
     </div>
   )
 }

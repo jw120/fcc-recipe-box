@@ -12,30 +12,18 @@ import type { WrappedActionProps } from '../actions'
 import type { State } from '../reducers'
 import './RecipeList.css'
 
-/** Helper function to render a recipe */
-function recipe(r: string, i: number, isSelected: boolean, onSelect: () => void) {
-  return (
-    <Recipe
-      recipe={r}
-      isSelected={isSelected}
-      onSelect={onSelect}
-      key={i}
-    />
-  )
-}
-
 function RecipeList(props: State & WrappedActionProps): React.Element<*> {
   return (
-    <div className="RecipeList">
-      <div className="RecipeList-Frame">
+    <div className='RecipeList'>
+      <div className='RecipeList-Frame'>
         { props.recipes.map((r: string, i: number) =>
-            recipe(r, i, props.selection === r, () => props.selectRecipe(r)))
+            <Recipe recipe={r} key={i} isSelected={props.selection === r} onSelect={() => props.selectRecipe(r)} />)
         }
       </div>
-      <Button onClick={() => props.setModal('Edit_Recipe_Modal', true)} bsStyle="primary">
+      <Button onClick={() => props.setModal('Edit_Recipe_Modal', true)} bsStyle='primary'>
         Add Recipe
       </Button>
-      <EditRecipeModal show={props.modal === 'Edit_Recipe_Modal'} title="Add Recipe" save={props.addRecipe}/>
+      <EditRecipeModal show={props.modal === 'Edit_Recipe_Modal'} title='Add Recipe' save={props.addRecipe}/>
     </div>
   )
 }

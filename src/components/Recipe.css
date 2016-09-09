@@ -1,6 +1,5 @@
 .Recipe {
-  background-color: dodgerblue;
   padding: 5px;
-  color: white;
   margin: 2px;
+  border-radius: 2px;
 }

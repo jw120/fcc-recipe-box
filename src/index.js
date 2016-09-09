@@ -16,7 +16,6 @@ import 'bootstrap/dist/css/bootstrap-theme.css' // optional?
 
 import recipeBoxApp from './reducers/index'
 import App from './components/App'
-import './index.css'
 
 // Start up our store and link to Redux DevTools
 let store: Store = createStore(recipeBoxApp, devToolsExtension && devToolsExtension())

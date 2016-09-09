@@ -1,6 +1,6 @@
 /** @flow
  *
- *
+ * Top-level reducer function
  *
  */
 
