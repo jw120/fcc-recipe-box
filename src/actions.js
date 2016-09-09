@@ -17,21 +17,25 @@ function makeActionCreator<T, P>(type: T): ((payload: P) => { type: T, payload: 
 
 /** Select a recipe */
 type SelectRecipeAction = SpecificAction<'SELECT_RECIPE', string>
-export const selectRecipe: ((recipe: string) => SelectRecipeAction)  = makeActionCreator('SELECT_RECIPE')
+export const selectRecipe: ((recipe: string) => SelectRecipeAction) =
+  makeActionCreator('SELECT_RECIPE')
 
 /** Add a recipe */
-type AddRecipeAction = SpecificAction<'ADD_RECIPE', string>
-export const addRecipe: ((recipe: string) => AddRecipeAction) = makeActionCreator('ADD_RECIPE')
+type AddRecipeAction = SpecificAction<'ADD_RECIPE', {recipe: string, ingredients: string}>
+export const addRecipe: (recipe: string, ingredients: string) => AddRecipeAction =
+  (recipe, ingredients) => makeActionCreator('ADD_RECIPE')({ recipe, ingredients })
 
 /** Set the state of our modals */
 import type { ModalState } from './reducers/modal'
 type SetModalAction = SpecificAction<'SET_MODAL', ModalState>
-export const setModal: ((modal: ModalState) => SetModalAction) = makeActionCreator('SET_MODAL')
+export const setModal: ((modal: ModalState) => SetModalAction) =
+  makeActionCreator('SET_MODAL')
 
 /** Set a form value */
 import type { FormKey } from './reducers/forms'
 type SetFormAction = SpecificAction<'SET_FORM', { key: FormKey, value: string}>
-export const setForm: (key: FormKey, value: string) => SetFormAction = (key, value) => makeActionCreator('SET_FORM')({ key, value })
+export const setForm: (key: FormKey, value: string) => SetFormAction =
+  (key, value) => makeActionCreator('SET_FORM')({ key, value })
 
 export type Action
   = SelectRecipeAction
@@ -41,7 +45,7 @@ export type Action
 
 export type WrappedActionProps = {
   selectRecipe: (recipe: string) => void,
-  addRecipe: (recipe: string) => void,
+  addRecipe: (recipe: string, ingredients: string) => void,
   setModal: (modal: ModalState) => void,
   setForm: (key: FormKey, value: string) => void
 }

@@ -4,16 +4,25 @@
  *
  */
 
+import { Map } from 'immutable'
 import type { Action } from '../actions'
 
-export type RecipesState = string[]
+export type RecipesState = Map<string, string[]>
 
-const initialState = ['Boiled eggs', 'Fish and Chips', 'Tarka Daal']
+const initialState: RecipesState = Map([
+  ['Boiled eggs', ['Eggs', 'Water']],
+  ['Fish and Chips', ['Cod', 'Flour', 'Oil']],
+  ['Tarka Daal', ['Lentils', 'Cumin', 'Salt', 'Pepper']]
+])
 
 function recipes(state: RecipesState = initialState, action: Action): RecipesState {
   switch (action.type) {
     case 'ADD_RECIPE':
-      return state.concat(action.payload)
+      let ingredients = action.payload.ingredients
+        .split(',')
+        .map((s) => s.trim(s))
+        .filter((s) => s.length > 0)
+      return state.set(action.payload.recipe, ingredients)
     default:
       return state
   }

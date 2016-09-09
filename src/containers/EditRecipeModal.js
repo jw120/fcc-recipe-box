@@ -18,7 +18,7 @@ import type { Action } from '../actions'
 type OwnProps = {
   show: boolean,
   title: string,
-  save: (recipe: string) => void
+  save: (recipe: string, ingredients: string) => void
 }
 
 // Properties injected from State
@@ -41,7 +41,7 @@ function handleSubmit(props: OwnProps & PropsFromState & PropsFromDispatch, e: ?
   }
   let recipe = props.value
   if (recipe && recipe.trim()) { // add the recipe if we have one
-    props.save(recipe.trim())
+    props.save(recipe.trim(), 'Dummy')
   }
   props.clearAndClose()
 }

@@ -1,27 +1,47 @@
 // @ flow
 
+import { is, Map } from 'immutable'
+
 import recipes from './recipes'
 import { addRecipe } from '../actions'
 
-it('turns undefined into an array', () => {
-  expect(Array.isArray(recipes(undefined, {}))).toBe(true)
+it('turns undefined into an immutable Map', () => {
+  let input = undefined
+  let output = recipes(input, { type: 'Unknown action' })
+  expect(Map.isMap(output)).toBe(true)
 })
 
-it('adds a recipe to an empty array', () => {
-  expect(recipes([], addRecipe('Y'))).toEqual(['Y'])
+it('adds a recipe to an empty Map', () => {
+  let input = Map()
+  let output = recipes(input, addRecipe('A','I1,I2'))
+  let expected = Map([['A', ['I1', 'I2']]])
+  expect(output).toEqual(expected)
 })
 
-it('adds a recipe to the tail of a non-empty array', () => {
-  expect(recipes(['X'], addRecipe('Y'))).toEqual(['X', 'Y'])
+it('adds a recipe to a non-empty Map', () => {
+  let input = Map([['A', ['A1', 'A2']]])
+  let output = recipes(input, addRecipe('B','B1,B2,B3'))
+  let expected = Map([['B', ['B1', 'B2', 'B3']], ['A', ['A1', 'A2']]])
+  expect(output.sort()).toEqual(expected.sort())
 })
 
 it('does not mutate the original when adding to an array', () => {
-  let input = ['X']
-  let output = recipes(input, addRecipe('Y'))
-  expect(output).toEqual(['X', 'Y'])
-  expect(input).toEqual(['X'])
+  let input = Map([['A', ['A1', 'A2']]])
+  let output = recipes(input, addRecipe('B','B1,B2,B3'))
+  let expected = Map([['B', ['B1', 'B2', 'B3']], ['A', ['A1', 'A2']]])
+  expect(output.sort()).toEqual(expected.sort())
+  expect(input).toEqual(Map([['A', ['A1', 'A2']]]))
 })
 
 it('ignores an unknown action', () => {
-  expect(recipes(['X'], { type: 'Unknown' })).toEqual(['X'])
+  let input = Map([['A', ['A1', 'A2']]])
+  let output = recipes(input, { type: 'Unknown'})
+  expect(output).toEqual(input)
+})
+
+it('trims spaces and drops empty entries in ingredients', () => {
+  let input = Map()
+  let output = recipes(input, addRecipe('A','x, y,  z z,,  ,'))
+  let expected = Map([['A', ['x', 'y', 'z z']]])
+  expect(output).toEqual(expected)
 })

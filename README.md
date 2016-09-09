@@ -9,10 +9,17 @@ Flow is now working with full coverage - except for the `Modal` from react-boots
 
 * Does not catch extra props added in JSX (does catch missing props)
 * Does not fail if we import a type which is not exported
+* Have to manually update WrappedActionProps in actions.js
+* Don't have props typed on our containers (or those from react-bootstrap)
 
 ## TODO
 
 * Add ingredients
+   + Render ingredients list
+   + Extend modal to add ingredients
+   + Add edit recipe button
+   + Add delete recipe Button
+   + Add delete recipe confirmation modal
 * Add localStorage
 
 * Other tests

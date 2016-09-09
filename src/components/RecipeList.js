@@ -13,10 +13,11 @@ import type { State } from '../reducers'
 import './RecipeList.css'
 
 function RecipeList(props: State & WrappedActionProps): React.Element<*> {
+  let keys: string[] = Array.from(props.recipes.keys())
   return (
     <div className='RecipeList'>
       <div className='RecipeList-Frame'>
-        { props.recipes.map((r: string, i: number) =>
+        { keys.map((r: string, i: number) =>
             <Recipe recipe={r} key={i} isSelected={props.selection === r} onSelect={() => props.selectRecipe(r)} />)
         }
       </div>
