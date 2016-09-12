@@ -21,18 +21,12 @@ the provided less-strict version.
 ## TODO
 
 * Add ingredients
-   + DONE Render ingredients list
-   + DONE out logic for edit Button
-   + DONE Comment code for modal
-   + DONE Add validation to entry? name must be at non-empty and different from other recipes
-   + Validation - avoid line appearing/disappearing with validation error
    + Validation - refactor code to pass in only one validation function that adds the message
    + Validation - trim names (not just in validation) and compare case-insensitively
-   + DONE Editing the name should change the recipe name - unless overwriting an existing one
-   + DONE Add delete recipe Button
    + Add delete recipe confirmation modal?
    + Should hitting return trigger submit in modal?
 * Use bootstrap accordian?
+* get rid of App
 * Add localStorage
 
 * Can we use destructuring instead of kv[0] etc

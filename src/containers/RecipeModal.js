@@ -13,6 +13,7 @@ import { Button, Modal, FormGroup, FormControl, ControlLabel, HelpBlock } from '
 import { setModal, setForm } from '../actions'
 import type { State } from '../reducers'
 import type { Action } from '../actions'
+import './RecipeModal.css'
 
 // Properties we inherit from our parent
 type OwnProps = {
@@ -55,7 +56,10 @@ function handleClick(props: PropsFromDispatch) {
 
 function RecipeModal(props: OwnProps & PropsFromState & PropsFromDispatch): React.Element<*> {
   return (
-    <Modal show={ props.show }>
+    <Modal
+      className='RecipeModal'
+      show={ props.show }
+    >
       <Modal.Header>
         <Modal.Title>{ props.title }</Modal.Title>
       </Modal.Header>
