@@ -14,7 +14,7 @@ import forms from './forms'
 import type { RecipesState } from './recipes'
 import type { SelectionState } from './selection'
 import type { ModalState } from './modal'
-import type { FormsState} from './forms'
+import type { FormsState } from './forms'
 
 import type { Action } from '../actions'
 
@@ -25,7 +25,7 @@ export type State = {
   forms: FormsState
 }
 
-const recipeBoxApp: (state: State, action : Action) => State = combineReducers({
+const recipeBoxApp: (state: State, action: Action) => State = combineReducers({
   recipes,
   selection,
   modal,

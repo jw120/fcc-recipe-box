@@ -33,7 +33,7 @@ it('replaces an existing key and value without mutation', () => {
 
 it('ignores an unknown action without mutation', () => {
   const input = new Map([['Recipe', 'xy']])
-  const output = forms(input, { type: 'Unknown'})
+  const output = forms(input, { type: 'Unknown' })
   expect(output).toEqual(new Map([['Recipe', 'xy']]))
   expect(input).toEqual(new Map([['Recipe', 'xy']]))
 })

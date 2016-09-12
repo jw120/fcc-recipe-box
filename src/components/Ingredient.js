@@ -12,7 +12,7 @@ type IngredientProps = {
 
 function Ingredient({ ingredient }: IngredientProps): React.Element<*> {
   return (
-    <div className={'Ingredient bg-info'}>
+    <div className='Ingredient bg-info'>
       { ingredient }
     </div>
   )

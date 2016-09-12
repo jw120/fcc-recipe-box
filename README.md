@@ -8,9 +8,15 @@ Implemented with React, redux, React Bootstrap and Immutable. Built with the `cr
 Flow is now working with full coverage - except for the `Modal` from react-bootstrap. Needs `flow-typed` definitions for `jest`, `redux` and `react-redux` to be installed. Note also
 
 * Does not catch extra props added in JSX (does catch missing props)
-* Does not fail if we import a type which is not exported
+* Fixed - Does not fail if we import a type which is not exported
 * Have to manually update WrappedActionProps in actions.js
 * Don't have props typed on our containers (or those from react-bootstrap)
+* Redux type exports not picked up by eslint-import
+
+`Create-react-app` does not allow configuration of the eslint rules and is set up to ignore formatting inconsistencies. As we
+cannot override this and prefer a stricter linter, we provide an additional strict configuration which we run manually. Atom runs
+the provided less-strict version.
+
 
 ## TODO
 
@@ -19,6 +25,7 @@ Flow is now working with full coverage - except for the `Modal` from react-boots
    + DONE out logic for edit Button
    + DONE Comment code for modal
    + DONE Add validation to entry? name must be at non-empty and different from other recipes
+   + Validation - avoid line appearing/disappearing with validation error
    + Validation - refactor code to pass in only one validation function that adds the message
    + Validation - trim names (not just in validation) and compare case-insensitively
    + DONE Editing the name should change the recipe name - unless overwriting an existing one

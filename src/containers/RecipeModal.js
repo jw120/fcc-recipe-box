@@ -42,61 +42,65 @@ function handleSubmit(props: OwnProps & PropsFromState & PropsFromDispatch, e: ?
   if (e) {
     e.preventDefault()
   }
-  let recipe = props.recipeValue
+  const recipe = props.recipeValue
   if (recipe && recipe.trim()) { // add the recipe if we have one
     props.save(recipe.trim(), props.ingredientsValue)
   }
   props.clearAndClose()
 }
 
+function handleClick(props: PropsFromDispatch) {
+  props.clearAndClose()
+}
+
 function RecipeModal(props: OwnProps & PropsFromState & PropsFromDispatch): React.Element<*> {
   return (
-      <Modal show={props.show}>
-        <Modal.Header>
-          <Modal.Title>{props.title}</Modal.Title>
-        </Modal.Header>
+    <Modal show={ props.show }>
+      <Modal.Header>
+        <Modal.Title>{ props.title }</Modal.Title>
+      </Modal.Header>
 
-        <Modal.Body>
-          <form onSubmit={(e) => handleSubmit(props, e)}>
-            <FormGroup validationState={props.validate(props.recipeValue, props.ingredientsValue)}>
-              <ControlLabel>Name of a new recipe</ControlLabel>
-              <FormControl
-                type='text'
-                value={props.recipeValue || '' /* default to empty string if no value provided */}
-                placeholder='Fish and chips'
-                onChange={props.onRecipeChange}
-                autoFocus
-              />
-              <HelpBlock>{ props.helpMessage(props.validate(props.recipeValue, props.ingredientsValue)) }</HelpBlock>
-            </FormGroup>
-            <FormGroup>
-              <ControlLabel>Ingredients used in the recipe (comma-separated)</ControlLabel>
-              <FormControl
-                type='text'
-                value={props.ingredientsValue || '' /* default to empty string if no value provided */}
-                placeholder='Cod, potatoes, peas'
-                onChange={props.onIngredientsChange}
-              />
-            </FormGroup>
-          </form>
-        </Modal.Body>
+      <Modal.Body>
+        <form onSubmit={ (e: Event) => handleSubmit(props, e) }>
+          <FormGroup validationState={ props.validate(props.recipeValue, props.ingredientsValue) }>
+            <ControlLabel>Name of a new recipe</ControlLabel>
+            <FormControl
+              type='text'
+              value={ props.recipeValue || '' /* default to empty string if no value provided */}
+              placeholder='Fish and chips'
+              onChange={ props.onRecipeChange }
+              autoFocus={ true }
+            />
+            <HelpBlock>{ props.helpMessage(props.validate(props.recipeValue, props.ingredientsValue)) }</HelpBlock>
+          </FormGroup>
+          <FormGroup>
+            <ControlLabel>Ingredients used in the recipe (comma-separated)</ControlLabel>
+            <FormControl
+              type='text'
+              value={ props.ingredientsValue || '' /* default to empty string if no value provided */}
+              placeholder='Cod, potatoes, peas'
+              onChange={ props.onIngredientsChange }
+            />
+          </FormGroup>
+        </form>
+      </Modal.Body>
 
-        <Modal.Footer>
-          <Button
-            onClick={props.clearAndClose}
-          >
-            Cancel
-          </Button>
-          <Button
-            disabled={props.validate(props.recipeValue, props.ingredientsValue) !== 'success'}
-            onClick={() => handleSubmit(props)}
-            bsStyle='primary'
-          >
-            Save
-          </Button>
-        </Modal.Footer>
+      <Modal.Footer>
+        <Button
+          onClick={ () => handleClick(props) }
+        >
+          Cancel
+        </Button>
+        <Button
+          disabled={ props.validate(props.recipeValue, props.ingredientsValue) !== 'success' }
+          onClick={ () => handleSubmit(props) }
+          bsStyle='primary'
+        >
+          Save
+        </Button>
+      </Modal.Footer>
 
-      </Modal>
+    </Modal>
   )
 }
 
@@ -114,13 +118,13 @@ function mapDispatchToProps(dispatch: (action: Action) => void): PropsFromDispat
       dispatch(setForm('Ingredients', ''))
       dispatch(setModal(null)) // close the modal
     },
-    onRecipeChange: (e) => {
+    onRecipeChange: (e: Event) => {
       e.preventDefault()
       if (e.target instanceof HTMLInputElement) {
         dispatch(setForm('Recipe', e.target.value || '')) // update the form entry value, defaulting to an empty string
       }
     },
-    onIngredientsChange: (e) => {
+    onIngredientsChange: (e: Event) => {
       e.preventDefault()
       if (e.target instanceof HTMLInputElement) {
         dispatch(setForm('Ingredients', e.target.value || '')) // update the form entry value, defaulting to an empty string

@@ -14,9 +14,12 @@ type IngredientProps = {
 
 function IngredientList({ ingredients }: IngredientProps): React.Element<*> {
   return (
-    <div className={'Ingredient-List'}>
-      { ingredients.map((ingredient, i) =>
-          <Ingredient ingredient={ingredient} key={i}/>)
+    <div className='Ingredient-List'>
+      { ingredients.map((ingredient: string, i: number) =>
+        <Ingredient
+          ingredient={ ingredient }
+          key={ i }
+        />)
       }
     </div>
   )

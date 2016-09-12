@@ -19,7 +19,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "flow-coverage": "for f in $(find ./src -name '*.js' -print); do /bin/echo -n $f '- '; flow coverage $f; done | grep ' \\d\\d.\\d\\d%'"
+    "flow-coverage": "for f in $(find ./src -name '*.js' -print); do /bin/echo -n $f '- '; flow coverage $f; done | grep ' \\d\\d.\\d\\d%'",
+    "lint": "eslint  -c .eslintrc-strict.js 'src/**/*js'"
   },
   "eslintConfig": {
     "extends": "./node_modules/react-scripts/config/eslint.js"

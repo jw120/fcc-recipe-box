@@ -17,12 +17,13 @@ const initialState: RecipesState = Map([
 
 function recipes(state: RecipesState = initialState, action: Action): RecipesState {
   switch (action.type) {
-    case 'ADD_RECIPE':
-      let ingredients = action.payload.ingredients
+    case 'ADD_RECIPE': {
+      const ingredients = action.payload.ingredients
         .split(',')
-        .map((s) => s.trim(s))
-        .filter((s) => s.length > 0)
+        .map((s: string): string => s.trim(s))
+        .filter((s: string): boolean => s.length > 0)
       return state.set(action.payload.recipe, ingredients)
+    }
     case 'DELETE_RECIPE':
       return state.delete(action.payload)
     default:

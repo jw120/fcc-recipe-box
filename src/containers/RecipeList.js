@@ -21,7 +21,7 @@ function openAddModal(props: State & WrappedActionProps) {
 
 function openEditModal(props: State & WrappedActionProps) {
   if (props.selection) {
-    let selection: string = props.selection
+    const selection: string = props.selection
     props.setForm('Recipe', selection)
     props.setForm('Ingredients', props.recipes.get(selection).join(', '))
     props.setModal('Edit_Recipe_Modal')
@@ -51,7 +51,7 @@ function handleValidate(oldRecipe: ?string, existingRecipes: Map<string, *>, rec
 function validationMessage(v: 'success' | ' warning' | 'error'): string {
   switch (v) {
     case 'error':
-      return 'Recipe name already exists'
+      return 'A recipe with that name already exists'
     case 'warning':
       return 'Enter a recipe name'
     default:
@@ -60,31 +60,34 @@ function validationMessage(v: 'success' | ' warning' | 'error'): string {
 }
 
 function RecipeList(props: State & WrappedActionProps): React.Element<*> {
-  let kvs: Array<[string, Array<string>]> = Array.from(props.recipes.entries())
+  const kvs: Array<[string, Array<string>]> = Array.from(props.recipes.entries())
   return (
     <div className='RecipeList'>
       <div className='RecipeList-Frame'>
-        { kvs.map((kv, i) =>
-            <Recipe
-              recipe={kv[0]}
-              ingredients={kv[1]}
-              key={kv[0]}
-              isSelected={props.selection === kv[0]}
-              onSelect={() => props.selectRecipe(kv[0])}
-              onEdit={() => openEditModal(props)}
-              onDelete={() => props.deleteRecipe(kv[0])}
-            />)
+        { kvs.map((kv: [string, string[]], i: number): React.Element<*> =>
+          <Recipe
+            recipe={ kv[0] }
+            ingredients={ kv[1] }
+            key={ kv[0] }
+            isSelected={ props.selection === kv[0] }
+            onSelect={ () => props.selectRecipe(kv[0]) }
+            onEdit={ () => openEditModal(props) }
+            onDelete={ () => props.deleteRecipe(kv[0]) }
+          />)
         }
       </div>
-      <Button onClick={() => openAddModal(props)} bsStyle='primary'>
+      <Button
+        onClick={ () => openAddModal(props) }
+        bsStyle='primary'
+      >
         Add Recipe
       </Button>
       <RecipeModal
-        show={props.modal !== null}
-        title={props.modal === 'Edit_Recipe_Modal' ? 'Edit a recipe' : 'Add a new recipe'}
-        save={(recipe: string, ingredients: string) => handleSave(props.selection, recipe, ingredients, props)}
-        validate={(recipe, ingredients) => handleValidate(props.selection, props.recipes, recipe, ingredients)}
-        helpMessage={validationMessage}
+        show={ props.modal !== null }
+        title={ props.modal === 'Edit_Recipe_Modal' ? 'Edit a recipe' : 'Add a new recipe' }
+        save={ (recipe: string, ingredients: string) => handleSave(props.selection, recipe, ingredients, props) }
+        validate={ (recipe: string, ingredients: string) => handleValidate(props.selection, props.recipes, recipe, ingredients) }
+        helpMessage={ validationMessage }
       />
     </div>
   )
