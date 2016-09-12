@@ -17,10 +17,12 @@ Flow is now working with full coverage - except for the `Modal` from react-boots
 * Add ingredients
    + DONE Render ingredients list
    + DONE out logic for edit Button
-   + Tidy wording of modal labels/comment code for modal
-   + Pressing enter in edit modal should submit
+   + Comment code for modal
+   + Add validation to entry? name must be at non-empty and different from other recipes
+   + Editting the name should change the recipe name - unless overwriting an existing one
    + Add delete recipe Button
    + Add delete recipe confirmation modal
+* Use bootstrap accordian?
 * Add localStorage
 
 * Other tests

@@ -23,6 +23,8 @@ function recipes(state: RecipesState = initialState, action: Action): RecipesSta
         .map((s) => s.trim(s))
         .filter((s) => s.length > 0)
       return state.set(action.payload.recipe, ingredients)
+    case 'DELETE_RECIPE':
+      return state.delete(action.payload)
     default:
       return state
   }

@@ -17,13 +17,19 @@ function makeActionCreator<T, P>(type: T): ((payload: P) => { type: T, payload: 
 
 /** Select a recipe */
 type SelectRecipeAction = SpecificAction<'SELECT_RECIPE', string>
-export const selectRecipe: ((recipe: string) => SelectRecipeAction) =
+export const selectRecipe: (recipe: string) => SelectRecipeAction =
   makeActionCreator('SELECT_RECIPE')
 
 /** Add a recipe */
 type AddRecipeAction = SpecificAction<'ADD_RECIPE', {recipe: string, ingredients: string}>
 export const addRecipe: (recipe: string, ingredients: string) => AddRecipeAction =
   (recipe, ingredients) => makeActionCreator('ADD_RECIPE')({ recipe, ingredients })
+
+/** Delete a recipe */
+type DeleteRecipeAction = SpecificAction<'DELETE_RECIPE', string>
+export const deleteRecipe: (recipe: string) => DeleteRecipeAction =
+  makeActionCreator('DELETE_RECIPE')
+
 
 /** Set the state of our modals */
 import type { ModalState } from './reducers/modal'
@@ -40,12 +46,14 @@ export const setForm: (key: FormKey, value: string) => SetFormAction =
 export type Action
   = SelectRecipeAction
   | AddRecipeAction
+  | DeleteRecipeAction
   | SetModalAction
   | SetFormAction
 
 export type WrappedActionProps = {
   selectRecipe: (recipe: string) => void,
   addRecipe: (recipe: string, ingredients: string) => void,
+  deleteRecipe: (recipe: string) => void,
   setModal: (modal: ModalState) => void,
   setForm: (key: FormKey, value: string) => void
 }

@@ -61,17 +61,17 @@ function UnwrappedRecipeModal(props: OwnProps & PropsFromState & PropsFromDispat
               <FormControl
                 type='text'
                 value={props.recipeValue|| '' /* default to empty string if no value provided */}
-                placeholder='Enter Recipe name'
+                placeholder='Fish and chips'
                 onChange={props.onRecipeChange}
                 autoFocus
               />
             </FormGroup>
             <FormGroup>
-              <ControlLabel>Enter ingredients</ControlLabel>
+              <ControlLabel>Ingredients used in the recipe (comma-separated)</ControlLabel>
               <FormControl
                 type='text'
                 value={props.ingredientsValue || '' /* default to empty string if no value provided */}
-                placeholder='Enter ingredients'
+                placeholder='Cod, potatoes, peas'
                 onChange={props.onIngredientsChange}
               />
             </FormGroup>

@@ -14,7 +14,6 @@ import './RecipeList.css'
 
 function openAddModal(props: State & WrappedActionProps) {
   props.setModal('Add_Recipe_Modal')
-  console.log("openAddModal", props.modal)
 }
 
 function openEditModal(props: State & WrappedActionProps) {
@@ -47,7 +46,7 @@ function RecipeList(props: State & WrappedActionProps): React.Element<*> {
       </Button>
       <RecipeModal
         show={props.modal !== null}
-        title={props.modal === 'Edit_Recipe_Modal' ? 'Edit recipe' : 'Add a new ecipe'}
+        title={props.modal === 'Edit_Recipe_Modal' ? 'Edit a recipe' : 'Add a new recipe'}
         save={props.addRecipe}
       />
     </div>
