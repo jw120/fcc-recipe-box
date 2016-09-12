@@ -27,6 +27,15 @@ function openEditModal(props: State & WrappedActionProps) {
   }
 }
 
+/** Helper function to handle hitting save in the recipe modal */
+function handleSave(oldRecipe: ?string, newRecipe: string, newIngredients: string, props: WrappedActionProps) {
+  console.log(oldRecipe, newRecipe)
+  if (oldRecipe && newRecipe !== oldRecipe) { // user has editted the recipe name
+    props.deleteRecipe(oldRecipe)
+  }
+  props.addRecipe(newRecipe, newIngredients)
+}
+
 function RecipeList(props: State & WrappedActionProps): React.Element<*> {
   let kvs: Array<[string, Array<string>]> = Array.from(props.recipes.entries())
   return (
@@ -50,7 +59,7 @@ function RecipeList(props: State & WrappedActionProps): React.Element<*> {
       <RecipeModal
         show={props.modal !== null}
         title={props.modal === 'Edit_Recipe_Modal' ? 'Edit a recipe' : 'Add a new recipe'}
-        save={props.addRecipe}
+        save={(recipe: string, ingredients: string) => handleSave(props.selection, recipe, ingredients, props)}
       />
     </div>
   )
