@@ -18,8 +18,10 @@ Flow is now working with full coverage - except for the `Modal` from react-boots
    + DONE Render ingredients list
    + DONE out logic for edit Button
    + DONE Comment code for modal
-   + Add validation to entry? name must be at non-empty and different from other recipes
-   + DONE Editting the name should change the recipe name - unless overwriting an existing one
+   + DONE Add validation to entry? name must be at non-empty and different from other recipes
+   + Validation - refactor code to pass in only one validation function that adds the message
+   + Validation - trim names (not just in validation) and compare case-insensitively
+   + DONE Editing the name should change the recipe name - unless overwriting an existing one
    + DONE Add delete recipe Button
    + Add delete recipe confirmation modal?
    + Should hitting return trigger submit in modal?

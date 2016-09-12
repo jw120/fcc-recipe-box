@@ -8,7 +8,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { Button, Modal, FormGroup, FormControl, ControlLabel } from 'react-bootstrap'
+import { Button, Modal, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap'
 
 import { setModal, setForm } from '../actions'
 import type { State } from '../reducers'
@@ -18,7 +18,9 @@ import type { Action } from '../actions'
 type OwnProps = {
   show: boolean,
   title: string,
-  save: (recipe: string, ingredients: string) => void
+  save: (recipe: string, ingredients: string) => void,
+  validate: (recipe: string, ingredients: string) => 'success' | 'warning' | 'error',
+  helpMessage: (ok: 'success' | 'warning' | 'error') => string
 }
 
 // Properties injected from State
@@ -36,6 +38,7 @@ type PropsFromDispatch = {
 
 /** Helper function to wrap the provided save property */
 function handleSubmit(props: OwnProps & PropsFromState & PropsFromDispatch, e: ?Event) {
+  console.log("In modal's handleSubmit", e)
   if (e) {
     e.preventDefault()
   }
@@ -55,15 +58,16 @@ function RecipeModal(props: OwnProps & PropsFromState & PropsFromDispatch): Reac
 
         <Modal.Body>
           <form onSubmit={(e) => handleSubmit(props, e)}>
-            <FormGroup>
-              <ControlLabel>Enter the name of a new recipe</ControlLabel>
+            <FormGroup validationState={props.validate(props.recipeValue, props.ingredientsValue)}>
+              <ControlLabel>Name of a new recipe</ControlLabel>
               <FormControl
                 type='text'
-                value={props.recipeValue|| '' /* default to empty string if no value provided */}
+                value={props.recipeValue || '' /* default to empty string if no value provided */}
                 placeholder='Fish and chips'
                 onChange={props.onRecipeChange}
                 autoFocus
               />
+              <HelpBlock>{ props.helpMessage(props.validate(props.recipeValue, props.ingredientsValue)) }</HelpBlock>
             </FormGroup>
             <FormGroup>
               <ControlLabel>Ingredients used in the recipe (comma-separated)</ControlLabel>
@@ -78,8 +82,18 @@ function RecipeModal(props: OwnProps & PropsFromState & PropsFromDispatch): Reac
         </Modal.Body>
 
         <Modal.Footer>
-          <Button onClick={props.clearAndClose}>Cancel</Button>
-          <Button onClick={() => handleSubmit(props)} bsStyle='primary'>Save</Button>
+          <Button
+            onClick={props.clearAndClose}
+          >
+            Cancel
+          </Button>
+          <Button
+            disabled={props.validate(props.recipeValue, props.ingredientsValue) !== 'success'}
+            onClick={() => handleSubmit(props)}
+            bsStyle='primary'
+          >
+            Save
+          </Button>
         </Modal.Footer>
 
       </Modal>
