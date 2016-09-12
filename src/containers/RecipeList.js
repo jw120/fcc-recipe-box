@@ -6,7 +6,6 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { Map } from 'immutable'
 
 import Recipe from '../components/Recipe'
 import RecipeModal from './RecipeModal'
@@ -37,26 +36,42 @@ function handleSave(oldRecipe: ?string, newRecipe: string, newIngredients: strin
   props.addRecipe(newRecipe, newIngredients)
 }
 
-/** Helper function to handle validation for recipe modal */
-function handleValidate(oldRecipe: ?string, existingRecipes: Map<string, *>, recipe: string, ingredients: string): 'success' | 'warning' | 'error' {
-  if (!recipe || recipe.length === 0) {
-    return 'warning' // if recipe name is missing
-  }
-  if (recipe && recipe !== oldRecipe && existingRecipes.has(recipe)) {
-    return 'error' // if name is diferent and already exists
-  }
-  return 'success'
-}
+// /** Helper function to handle validation for recipe modal */
+// function handleValidate(oldRecipe: ?string, existingRecipes: Map<string, *>, recipe: string, ingredients: string): 'success' | 'warning' | 'error' {
+//   if (!recipe || recipe.length === 0) {
+//     return 'warning' // if recipe name is missing
+//   }
+//   if (recipe && recipe !== oldRecipe && existingRecipes.has(recipe)) {
+//     return 'error' // if name is diferent and already exists
+//   }
+//   return 'success'
+// }
+//
+// function validationMessage(v: 'success' | ' warning' | 'error'): string {
+//   switch (v) {
+//     case 'error':
+//       return 'A recipe with that name already exists'
+//     case 'warning':
+//       return 'Enter a recipe name'
+//     default:
+//       return ''
+//   }
+// }
 
-function validationMessage(v: 'success' | ' warning' | 'error'): string {
-  switch (v) {
-    case 'error':
-      return 'A recipe with that name already exists'
-    case 'warning':
-      return 'Enter a recipe name'
-    default:
-      return ''
+export type Validation = {
+  result: 'success' | 'warning' | 'error',
+  message: string
+}
+function validation(props: State & WrappedActionProps, recipe: string, ingredients: string): Validation {
+  const trimmedRecipe = recipe.trim()
+  if (!trimmedRecipe) {
+    return { result: 'warning', message: '' }
   }
+  const normalizeRecipe = recipe.toLowerCase()
+  if (props.recipes.some((value: *, recipe: string) => recipe.toLowerCase() === normalizeRecipe)) {
+    return { result: 'error', message: 'A recipe with that name already exists' }
+  }
+  return { result: 'success', message: '' }
 }
 
 function RecipeList(props: State & WrappedActionProps): React.Element<*> {
@@ -86,8 +101,7 @@ function RecipeList(props: State & WrappedActionProps): React.Element<*> {
         show={ props.modal !== null }
         title={ props.modal === 'Edit_Recipe_Modal' ? 'Edit a recipe' : 'Add a new recipe' }
         save={ (recipe: string, ingredients: string) => handleSave(props.selection, recipe, ingredients, props) }
-        validate={ (recipe: string, ingredients: string) => handleValidate(props.selection, props.recipes, recipe, ingredients) }
-        helpMessage={ validationMessage }
+        validation={ (recipe: string, ingredients: string) => validation(props, recipe, ingredients) }
       />
     </div>
   )

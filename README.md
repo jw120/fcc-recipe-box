@@ -20,11 +20,7 @@ the provided less-strict version.
 
 ## TODO
 
-* Add ingredients
-   + Validation - refactor code to pass in only one validation function that adds the message
-   + Validation - trim names (not just in validation) and compare case-insensitively
-   + Add delete recipe confirmation modal?
-   + Should hitting return trigger submit in modal?
+* Add delete recipe confirmation modal?
 * Use bootstrap accordian?
 * get rid of App
 * Add localStorage

@@ -21,9 +21,3 @@ function App(): React.Element<*> {
 }
 
 export default App
-
-/*
-<div className='App-Header'>
-  Recipe Box
-</div>
-*/

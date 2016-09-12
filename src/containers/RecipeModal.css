@@ -1,4 +1,0 @@
-// We fix the height of the validation help text to avoid the box height changing when it disappears
-.RecipeModal .help-block {
-  height: 16pt;
-}
