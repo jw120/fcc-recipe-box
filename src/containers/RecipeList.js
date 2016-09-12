@@ -1,13 +1,15 @@
 /** @flow
  *
- * Main presentational component
+ * Main presentational container
  */
 
 import React from 'react'
 import { Button } from 'react-bootstrap'
+import { connect } from 'react-redux'
 
-import Recipe from './Recipe'
-import RecipeModal from '../containers/RecipeModal'
+import Recipe from '../components/Recipe'
+import RecipeModal from './RecipeModal'
+import * as actions from '../actions'
 import type { WrappedActionProps } from '../actions'
 import type { State } from '../reducers'
 import './RecipeList.css'
@@ -38,6 +40,7 @@ function RecipeList(props: State & WrappedActionProps): React.Element<*> {
               isSelected={props.selection === kv[0]}
               onSelect={() => props.selectRecipe(kv[0])}
               onEdit={() => openEditModal(props)}
+              onDelete={() => props.deleteRecipe(kv[0])}
             />)
         }
       </div>
@@ -53,4 +56,4 @@ function RecipeList(props: State & WrappedActionProps): React.Element<*> {
   )
 }
 
-export default RecipeList
+export default connect((state: State) => state, actions)(RecipeList)

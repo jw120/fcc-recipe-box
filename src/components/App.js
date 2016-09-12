@@ -6,7 +6,7 @@
 
 import React from 'react'
 
-import RecipeBox from '../containers/RecipeBox'
+import RecipeList from '../containers/RecipeList'
 import './App.css'
 
 function App(): React.Element<*> {
@@ -15,7 +15,7 @@ function App(): React.Element<*> {
       <div className='page-header'>
         <h1>Recipe Box <small>A FreeCodeCamp exercise</small></h1>
       </div>
-      <RecipeBox />
+      <RecipeList />
     </div>
   )
 }

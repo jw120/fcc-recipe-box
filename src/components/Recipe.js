@@ -14,7 +14,8 @@ type RecipeProps = {
   ingredients: string[],
   isSelected: boolean,
   onSelect: () => void,
-  onEdit: () => void
+  onEdit: () => void,
+  onDelete: () => void
 }
 
 function Recipe(props: RecipeProps): React.Element<*> {
@@ -30,7 +31,7 @@ function Recipe(props: RecipeProps): React.Element<*> {
             <Button bsSize="small" onClick={props.onEdit}>
               Edit Recipe
             </Button>
-            <Button bsSize="small" bsStyle="danger">
+            <Button bsSize="small" onClick={props.onDelete} bsStyle="danger">
               Delete Recipe
             </Button>
           </ButtonToolbar>

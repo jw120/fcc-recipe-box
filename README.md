@@ -20,11 +20,12 @@ Flow is now working with full coverage - except for the `Modal` from react-boots
    + Comment code for modal
    + Add validation to entry? name must be at non-empty and different from other recipes
    + Editting the name should change the recipe name - unless overwriting an existing one
-   + Add delete recipe Button
-   + Add delete recipe confirmation modal
+   + DONE Add delete recipe Button
+   + Add delete recipe confirmation modal?
 * Use bootstrap accordian?
 * Add localStorage
 
+* Can we use destructuring instead of kv[0] etc
 * Other tests
 * Should we do something better with threading state into our components - forms?
 * Remove ; and ""

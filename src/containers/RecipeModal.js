@@ -34,20 +34,19 @@ type PropsFromDispatch = {
   onIngredientsChange: (e: Event) => void
 }
 
-/** Helper function to wrap the provided save prop */
+/** Helper function to wrap the provided save property */
 function handleSubmit(props: OwnProps & PropsFromState & PropsFromDispatch, e: ?Event) {
   if (e) {
     e.preventDefault()
   }
   let recipe = props.recipeValue
-  let ingredients = props.ingredientsValue
   if (recipe && recipe.trim()) { // add the recipe if we have one
-    props.save(recipe.trim(), ingredients)
+    props.save(recipe.trim(), props.ingredientsValue)
   }
   props.clearAndClose()
 }
 
-function UnwrappedRecipeModal(props: OwnProps & PropsFromState & PropsFromDispatch): React.Element<*> {
+function RecipeModal(props: OwnProps & PropsFromState & PropsFromDispatch): React.Element<*> {
   return (
       <Modal show={props.show}>
         <Modal.Header>
@@ -116,6 +115,4 @@ function mapDispatchToProps(dispatch: (action: Action) => void): PropsFromDispat
   }
 }
 
-const RecipeModal = connect(mapStateToProps, mapDispatchToProps)(UnwrappedRecipeModal)
-
-export default RecipeModal
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeModal)

@@ -47,7 +47,7 @@ it('ignores delete request on a non-existing recipe without mutation', () => {
   let output = recipes(input, deleteRecipe('C'))
   let expected = Map([['A', ['A1', 'A2']], ['B', ['B1', 'B2']]])
   expect(output.sort()).toEqual(expected.sort())
-  expect(input).toEqual(Map([['A', ['A1', 'A2']], ['B', ['B1', 'B2']]]))
+  expect(input).toEqual(Map([['A', ['A1', 'A2']], ['B', ['B1', 'B2']]]))  
 })
 
 it('ignores an unknown action', () => {
