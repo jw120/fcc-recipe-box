@@ -44,12 +44,12 @@ function RecipeBox(props: State & WrappedActionProps): React.Element<*> {
     <div>
       <Accordion>
         {
-          kvs.map((kv: [string, string[]], i: number): React.Element<*> =>
-            <Panel header={ kv[0] } eventKey={ i } key={ i }>
+          kvs.map(([key, value]: [string, string[]], i: number): React.Element<*> =>
+            <Panel header={ key } eventKey={ i } key={ i }>
               <Ingredients
-                ingredients={ kv[1] }
-                onEdit={ () => handleEdit(kv[0], props) }
-                onDelete={ () => props.deleteRecipe(kv[0]) }
+                ingredients={ value }
+                onEdit={ () => handleEdit(key, props) }
+                onDelete={ () => props.deleteRecipe(key) }
               />
             </Panel>
           )
