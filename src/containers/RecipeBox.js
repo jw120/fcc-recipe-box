@@ -39,17 +39,17 @@ function handleSave(oldRecipe: ?string, newRecipe: string, newIngredients: strin
 }
 
 function RecipeBox(props: State & WrappedActionProps): React.Element<*> {
-  const kvs: Array<[string, Array<string>]> = Array.from(props.recipes.entries())
+  const recipeIngredientPairs: Array<[string, Array<string>]> = Array.from(props.recipes.entries())
   return (
     <div>
       <Accordion>
         {
-          kvs.map(([key, value]: [string, string[]], i: number): React.Element<*> =>
-            <Panel header={ key } eventKey={ i } key={ i }>
+          recipeIngredientPairs.map(([recipe, ingredients]: [string, string[]], i: number): React.Element<*> =>
+            <Panel header={ recipe } eventKey={ i } key={ i }>
               <Ingredients
-                ingredients={ value }
-                onEdit={ () => handleEdit(key, props) }
-                onDelete={ () => props.deleteRecipe(key) }
+                ingredients={ ingredients }
+                onEdit={ () => handleEdit(recipe, props) }
+                onDelete={ () => props.deleteRecipe(recipe) }
               />
             </Panel>
           )

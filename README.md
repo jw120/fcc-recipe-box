@@ -25,7 +25,6 @@ the provided less-strict version.
 
 * Use iterators more? instesd of passing arrays?
 * Use immutable in forms?
-* Can we use destructuring instead of kv[0] etc
 * Other tests
 * Should we do something better with threading state into our components - forms?
 * Remove ; and ""
