@@ -16,7 +16,8 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/css/bootstrap-theme.css' // optional?
 
 import recipeBoxApp from './reducers/index'
-import App from './components/App'
+import RecipeBox from './containers/RecipeBox'
+import './app.css'
 
 // import type { Store } from 'redux'
 type Store = any
@@ -26,7 +27,12 @@ const store: Store = createStore(recipeBoxApp, devToolsExtension && devToolsExte
 
 render(
   <Provider store={ store }>
-    <App />
+    <div className='App'>
+      <div className='page-header'>
+        <h1>Recipe Box <small>A FreeCodeCamp exercise</small></h1>
+      </div>
+      <RecipeBox />
+    </div>
   </Provider>,
   document.getElementById('root')
 )

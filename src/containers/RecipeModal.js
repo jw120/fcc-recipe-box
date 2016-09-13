@@ -1,6 +1,6 @@
 /** @flow
  *
- * Container which renders the modal to edit a recipe, connects to the store
+ * Container which renders the modal to edit a recipe, connects to the forms and modal parts of the store
  * to handle its own UI state directly
  *
  */
@@ -13,7 +13,7 @@ import { Button, Modal, FormGroup, FormControl, ControlLabel, HelpBlock } from '
 import { setModal, setForm } from '../actions'
 import type { State } from '../reducers'
 import type { Action } from '../actions'
-import type { Validation } from './RecipeList'
+import type { Validation } from '../validation'
 
 // Properties we inherit from our parent
 type OwnProps = {
@@ -21,8 +21,6 @@ type OwnProps = {
   title: string,
   save: (recipe: string, ingredients: string) => void,
   validation: (recipe: string, ingredients: string) => Validation
-  // validate: (recipe: string, ingredients: string) => 'success' | 'warning' | 'error',
-  // helpMessage: (ok: 'success' | 'warning' | 'error') => string
 }
 
 // Properties injected from State
@@ -40,7 +38,6 @@ type PropsFromDispatch = {
 
 /** Helper function to wrap the provided save property */
 function handleSubmit(props: OwnProps & PropsFromState & PropsFromDispatch, e: ?Event) {
-  console.log("In modal's handleSubmit", e)
   if (e) {
     e.preventDefault()
   }
@@ -48,10 +45,6 @@ function handleSubmit(props: OwnProps & PropsFromState & PropsFromDispatch, e: ?
   if (recipe && recipe.trim()) { // add the recipe if we have one
     props.save(recipe.trim(), props.ingredientsValue)
   }
-  props.clearAndClose()
-}
-
-function handleClick(props: PropsFromDispatch) {
   props.clearAndClose()
 }
 
@@ -93,7 +86,7 @@ function RecipeModal(props: OwnProps & PropsFromState & PropsFromDispatch): Reac
 
       <Modal.Footer>
         <Button
-          onClick={ () => handleClick(props) }
+          onClick={ () => props.clearAndClose() }
         >
           Cancel
         </Button>

@@ -1,6 +1,6 @@
 /** @flow
  *
- * Selection state records which recipe has been selected by the user (if any)
+ * Selection state records which recipe has been opened for edding by the user (if any)
  *
  */
 

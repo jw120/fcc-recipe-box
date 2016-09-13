@@ -3,3 +3,7 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.top-padded {
+  padding-top: 10px;
+}

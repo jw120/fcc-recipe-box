@@ -20,11 +20,13 @@ the provided less-strict version.
 
 ## TODO
 
+* Modal title should not be "new recipe" when editting
+* Review code and comment all
 * Add delete recipe confirmation modal?
-* Use bootstrap accordian?
-* get rid of App
 * Add localStorage
 
+* Use iterators more? instesd of passing arrays?
+* Use immutable in forms?
 * Can we use destructuring instead of kv[0] etc
 * Other tests
 * Should we do something better with threading state into our components - forms?

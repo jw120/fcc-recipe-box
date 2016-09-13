@@ -19,8 +19,8 @@ function makeActionCreator<T, P>(type: T): ((payload: P) => { type: T, payload: 
 }
 
 /** Select a recipe */
-type SelectRecipeAction = SpecificAction<'SELECT_RECIPE', string>
-export const selectRecipe: (recipe: string) => SelectRecipeAction =
+type SelectRecipeAction = SpecificAction<'SELECT_RECIPE', string | null>
+export const selectRecipe: (recipe: string | null) => SelectRecipeAction =
   makeActionCreator('SELECT_RECIPE')
 
 /** Add a recipe */
@@ -51,7 +51,7 @@ export type Action
   | SetFormAction
 
 export type WrappedActionProps = {
-  selectRecipe: (recipe: string) => void,
+  selectRecipe: (recipe: string | null) => void,
   addRecipe: (recipe: string, ingredients: string) => void,
   deleteRecipe: (recipe: string) => void,
   setModal: (modal: ModalState) => void,

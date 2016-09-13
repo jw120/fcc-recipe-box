@@ -131,7 +131,7 @@ module.exports = {
     'react/jsx-indent-props': ['error', indent],
     'react/jsx-indent': ['error', indent],
     'react/jsx-key': 'error',
-    'react/jsx-max-props-per-line': ['error', { maximum: 1 }],
+    // 'react/jsx-max-props-per-line': ['error', { maximum: 1 }],
     'react/jsx-no-duplicate-props': ['error', { ignoreCase: true }],
     'react/jsx-no-undef': 'error',
     'react/jsx-pascal-case': 'error',
