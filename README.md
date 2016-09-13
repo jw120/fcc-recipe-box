@@ -12,6 +12,7 @@ Flow is now working with full coverage - except for the `Modal` from react-boots
 * Have to manually update WrappedActionProps in actions.js
 * Don't have props typed on our containers (or those from react-bootstrap)
 * Redux type exports not picked up by eslint-import
+* {| |} seems not to work yet with out tool-chain
 
 `Create-react-app` does not allow configuration of the eslint rules and is set up to ignore formatting inconsistencies. As we
 cannot override this and prefer a stricter linter, we provide an additional strict configuration which we run manually. Atom runs
@@ -22,17 +23,8 @@ the provided less-strict version.
 
 * Add delete recipe confirmation modal?
 * Add localStorage
-
-* Use iterators more? instesd of passing arrays?
-* Use immutable in forms?
 * Other tests
-* Should we do something better with threading state into our components - forms?
-* Remove ; and ""
-* Can we use exact types {| |} - seems not supported by current babel
-* Decide where to keep css (one file, or many?)
-* Do we need PropTypes?
 * Check markdown formatting of this file
-* better way to write first selected test (lambda?)
 
 # Notes
 

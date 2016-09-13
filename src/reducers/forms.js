@@ -4,19 +4,19 @@
  *
  */
 
+import { Map } from 'immutable'
 import type { Action } from '../actions'
 
 export type FormKey = 'Recipe' | 'Ingredients'
 
 export type FormsState =  Map<FormKey, string>
 
-const initialState = new Map()
+const initialState = Map()
 
 function forms(state: FormsState = initialState, action: Action): FormsState {
   switch (action.type) {
     case 'SET_FORM': {
-      const copy = new Map(state.entries())
-      return copy.set(action.payload.key, action.payload.value)
+      return state.set(action.payload.key, action.payload.value)
     }
     default:
       return state
