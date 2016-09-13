@@ -20,8 +20,6 @@ the provided less-strict version.
 
 ## TODO
 
-* Modal title should not be "new recipe" when editting
-* Review code and comment all
 * Add delete recipe confirmation modal?
 * Add localStorage
 

@@ -19,11 +19,11 @@ import recipeBoxApp from './reducers/index'
 import RecipeBox from './containers/RecipeBox'
 import './app.css'
 
+// We should import this type but not working
 // import type { Store } from 'redux'
-type Store = any
 
 // Start up our store and link to Redux DevTools
-const store: Store = createStore(recipeBoxApp, devToolsExtension && devToolsExtension())
+const store /* omitted : Store */ = createStore(recipeBoxApp, devToolsExtension && devToolsExtension())
 
 render(
   <Provider store={ store }>

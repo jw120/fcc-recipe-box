@@ -2,7 +2,7 @@
 
 // Flow definition for react's devToolsExtension extension
 
+// We should import this type but not working
 // import type { StoreEnhancer } from 'redux'
-type StoreEnhancer = any
 
-declare var devToolsExtension: (() => StoreEnhancer) | void
+declare var devToolsExtension/* omitted :(() => StoreEnhancer) | void */

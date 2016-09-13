@@ -7,7 +7,6 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-
 import { Button, Modal, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap'
 
 import { setModal, setForm } from '../actions'
@@ -19,6 +18,7 @@ import type { Validation } from '../validation'
 type OwnProps = {
   show: boolean,
   title: string,
+  label: string,
   save: (recipe: string, ingredients: string) => void,
   validation: (recipe: string, ingredients: string) => Validation
 }
@@ -62,7 +62,7 @@ function RecipeModal(props: OwnProps & PropsFromState & PropsFromDispatch): Reac
       <Modal.Body>
         <form onSubmit={ (e: Event) => handleSubmit(props, e) }>
           <FormGroup validationState={ validation.result }>
-            <ControlLabel>Name of a new recipe</ControlLabel>
+            <ControlLabel>{ props.label }</ControlLabel>
             <FormControl
               type='text'
               value={ props.recipeValue || '' /* default to empty string if no value provided */}

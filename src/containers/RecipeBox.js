@@ -1,6 +1,6 @@
 /** @flow
  *
- * Main app container - connected to full redux state and all action creators
+ * Main container - connected to full redux state and all action creators
  */
 
 import React from 'react'
@@ -27,7 +27,7 @@ function handleAdd(props: WrappedActionProps) {
   props.setForm('Recipe', '')
   props.setForm('Ingredients', '')
   props.selectRecipe(null)
-  props.setModal('Edit_Recipe_Modal')
+  props.setModal('Add_Recipe_Modal')
 }
 
 /** Helper function passed to Modal to to handle hitting Save */
@@ -61,6 +61,7 @@ function RecipeBox(props: State & WrappedActionProps): React.Element<*> {
       <RecipeModal
         show={ props.modal !== null }
         title={ props.modal === 'Edit_Recipe_Modal' ? 'Edit a recipe' : 'Add a new recipe' }
+        label={ props.modal === 'Edit_Recipe_Modal' ? 'Recipe name' : 'Name of new recipe' }
         save={ (recipe: string, ingredients: string) => handleSave(props.selection, recipe, ingredients, props) }
         validation={ (r: string) => validateRecipe(r, props.recipes.keys(), props.selection) }
       />
