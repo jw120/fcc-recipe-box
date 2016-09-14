@@ -12,21 +12,21 @@ import { Button, Modal, FormGroup, FormControl, ControlLabel, HelpBlock } from '
 import { setModal, setForm } from '../actions'
 import type { State } from '../reducers'
 import type { Action } from '../actions'
-import type { Validation } from '../validation'
+import type { Validation } from '../utils/validation'
 
 // Properties we inherit from our parent
 type OwnProps = {
   show: boolean,
   title: string,
   label: string,
-  save: (recipe: string, ingredients: string) => void,
-  validation: (recipe: string, ingredients: string) => Validation
+  save: (recipe: string, packedIngredients: string) => void,
+  validation: (recipe: string, packedIngredients: string) => Validation
 }
 
 // Properties injected from State
 type PropsFromState = {
   recipeValue: string,
-  ingredientsValue: string
+  packedIngredientsValue: string
 }
 
 // Properties injected from Dispatch
@@ -43,13 +43,13 @@ function handleSubmit(props: OwnProps & PropsFromState & PropsFromDispatch, e: ?
   }
   const recipe = props.recipeValue
   if (recipe && recipe.trim()) { // add the recipe if we have one
-    props.save(recipe.trim(), props.ingredientsValue)
+    props.save(recipe.trim(), props.packedIngredientsValue)
   }
   props.clearAndClose()
 }
 
 function RecipeModal(props: OwnProps & PropsFromState & PropsFromDispatch): React.Element<*> {
-  const validation = props.validation(props.recipeValue, props.ingredientsValue)
+  const validation = props.validation(props.recipeValue, props.packedIngredientsValue)
   return (
     <Modal
       className='RecipeModal'
@@ -76,7 +76,7 @@ function RecipeModal(props: OwnProps & PropsFromState & PropsFromDispatch): Reac
             <ControlLabel>Ingredients used in the recipe (comma-separated)</ControlLabel>
             <FormControl
               type='text'
-              value={ props.ingredientsValue || '' /* default to empty string if no value provided */}
+              value={ props.packedIngredientsValue || '' /* default to empty string if no value provided */}
               placeholder='Cod, potatoes, peas'
               onChange={ props.onIngredientsChange }
             />
@@ -106,7 +106,7 @@ function RecipeModal(props: OwnProps & PropsFromState & PropsFromDispatch): Reac
 function mapStateToProps(state: State): PropsFromState {
   return {
     recipeValue: state.forms.get('Recipe') || '',
-    ingredientsValue: state.forms.get('Ingredients') || ''
+    packedIngredientsValue: state.forms.get('Ingredients') || ''
   }
 }
 

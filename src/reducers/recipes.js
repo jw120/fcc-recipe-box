@@ -7,22 +7,17 @@
 import { Map } from 'immutable'
 import type { Action } from '../actions'
 
+import { unpack } from '../utils/pack'
+
 export type RecipesState = Map<string, string[]>
 
-const initialState: RecipesState = Map([
-  ['Boiled eggs', ['Eggs', 'Water']],
-  ['Fish and Chips', ['Cod', 'Flour', 'Oil']],
-  ['Tarka Daal', ['Lentils', 'Cumin', 'Salt', 'Pepper']]
-])
+const initialState = Map() // We rely on index.js to read intial value from localStorage
 
 function recipes(state: RecipesState = initialState, action: Action): RecipesState {
+
   switch (action.type) {
     case 'ADD_RECIPE': {
-      const ingredients = action.payload.ingredients
-        .split(',')
-        .map((s: string): string => s.trim(s))
-        .filter((s: string): boolean => s.length > 0)
-      return state.set(action.payload.recipe, ingredients)
+      return state.set(action.payload.recipe, unpack(action.payload.packedIngredients))
     }
     case 'DELETE_RECIPE':
       return state.delete(action.payload)

@@ -21,8 +21,10 @@ the provided less-strict version.
 
 ## TODO
 
+* check redux types in more places
+* more tests for pack
+* quickcheck test for pack?
 * Add delete recipe confirmation modal?
-* Add localStorage
 * Other tests
 * Check markdown formatting of this file
 

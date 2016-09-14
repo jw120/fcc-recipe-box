@@ -24,9 +24,9 @@ export const selectRecipe: (recipe: string | null) => SelectRecipeAction =
   makeActionCreator('SELECT_RECIPE')
 
 /** Add a recipe */
-type AddRecipeAction = SpecificAction<'ADD_RECIPE', {recipe: string, ingredients: string}>
+type AddRecipeAction = SpecificAction<'ADD_RECIPE', {recipe: string, packedIngredients: string}>
 export const addRecipe: (recipe: string, ingredients: string) => AddRecipeAction =
-  (recipe: string, ingredients: string) => makeActionCreator('ADD_RECIPE')({ recipe, ingredients })
+  (recipe: string, packedIngredients: string) => makeActionCreator('ADD_RECIPE')({ recipe, packedIngredients })
 
 /** Delete a recipe */
 type DeleteRecipeAction = SpecificAction<'DELETE_RECIPE', string>

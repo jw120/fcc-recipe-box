@@ -10,14 +10,15 @@ import { connect } from 'react-redux'
 import Ingredients from '../components/Ingredients'
 import RecipeModal from './RecipeModal'
 import * as actions from '../actions'
-import { validateRecipe } from '../validation'
+import { validateRecipe } from '../utils/validation'
+import { pack } from '../utils/pack'
 import type { WrappedActionProps } from '../actions'
 import type { State } from '../reducers'
 
 /** Helper function passed to IngredientList to handle clicking Edit */
 function handleEdit(recipe: string, props: State & WrappedActionProps) {
   props.setForm('Recipe', recipe)
-  props.setForm('Ingredients', props.recipes.get(recipe).join(', '))
+  props.setForm('Ingredients', pack(props.recipes.get(recipe)))
   props.selectRecipe(recipe)
   props.setModal('Edit_Recipe_Modal')
 }
