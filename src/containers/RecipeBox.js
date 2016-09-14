@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 
 import Ingredients from '../components/Ingredients'
 import RecipeModal from './RecipeModal'
+import ConfirmModal from '../components/ConfirmModal'
 import * as actions from '../actions'
 import { validateRecipe } from '../utils/validation'
 import { pack } from '../utils/pack'
@@ -21,6 +22,25 @@ function handleEdit(recipe: string, props: State & WrappedActionProps) {
   props.setForm('Ingredients', pack(props.recipes.get(recipe)))
   props.selectRecipe(recipe)
   props.setModal('Edit_Recipe_Modal')
+}
+
+/** Helper function passed to IngredientList to handle clicking Delete */
+function handleDelete(recipe: string, props: State & WrappedActionProps) {
+  props.selectRecipe(recipe)
+  props.setModal('Confirm_Modal')
+}
+
+/** Helper function passed to Confim Modal to handle click confirming deletion */
+function handleConfirm(props: State & WrappedActionProps) {
+  if (props.selection) {
+    props.deleteRecipe(props.selection)
+  }
+  props.setModal(null)
+}
+
+/** Helper function passed to Confim Modal to handle click cancelling deletion */
+function handleCancel(props: State & WrappedActionProps) {
+  props.setModal(null)
 }
 
 /** Helper function to handle clicking Add Receipe */
@@ -50,7 +70,7 @@ function RecipeBox(props: State & WrappedActionProps): React.Element<*> {
               <Ingredients
                 ingredients={ ingredients }
                 onEdit={ () => handleEdit(recipe, props) }
-                onDelete={ () => props.deleteRecipe(recipe) }
+                onDelete={ () => handleDelete(recipe, props) }
               />
             </Panel>
           )
@@ -60,11 +80,17 @@ function RecipeBox(props: State & WrappedActionProps): React.Element<*> {
         Add Recipe
       </Button>
       <RecipeModal
-        show={ props.modal !== null }
+        show={ props.modal === 'Edit_Recipe_Modal' || props.modal === 'Add_Recipe_Modal' }
         title={ props.modal === 'Edit_Recipe_Modal' ? 'Edit a recipe' : 'Add a new recipe' }
         label={ props.modal === 'Edit_Recipe_Modal' ? 'Recipe name' : 'Name of new recipe' }
         save={ (recipe: string, ingredients: string) => handleSave(props.selection, recipe, ingredients, props) }
         validation={ (r: string) => validateRecipe(r, props.recipes.keys(), props.selection) }
+      />
+      <ConfirmModal
+        show={ props.modal === 'Confirm_Modal' }
+        recipe={ props.selection || '' }
+        handleConfirm={ () => handleConfirm(props) }
+        handleCancel={ () => handleCancel(props) }
       />
     </div>
   )

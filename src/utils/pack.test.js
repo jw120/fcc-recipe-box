@@ -15,13 +15,13 @@ it('packs an array removing start/end whitespace', () => {
 })
 
 it('unpacks a comma separated string removing start/end whitespace', () => {
-  expect(unpack(' A ,B B,\tC\r')).toEqual(['A', 'B B','C'])
+  expect(unpack(' A ,B B,\tC\r')).toEqual(['A', 'B B', 'C'])
 })
 
 it('packs an array removing elements that have no non-whitespae characters', () => {
-  expect(pack(['A', '', ' ', 'B ','\t', '\r\n'])).toBe('A,B')
+  expect(pack(['A', '', ' ', 'B ', '\t', '\r\n'])).toBe('A,B')
 })
 
 it('unpacks a comma separated string removing elements that have no non-whitespae characters', () => {
-  expect(unpack(',A,,B,\t, \r,')).toEqual(['A','B'])
+  expect(unpack(',A,,B,\t, \r,')).toEqual(['A', 'B'])
 })

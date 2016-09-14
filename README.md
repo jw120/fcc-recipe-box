@@ -5,14 +5,14 @@ in the browser's local storage.
 
 Implemented with React, redux, React Bootstrap and Immutable. Built with the `create-react-app` initial boilerplate adding flow.
 
-Flow is now working with full coverage - except for the `Modal` from react-bootstrap. Needs `flow-typed` definitions for `jest`, `redux` and `react-redux` to be installed. Note also
+Flow is now working with decent coverage - except for the some of the `react-bootstrap` components and `redux`. Needs `flow-typed` definitions for `jest`, `redux` and `react-redux` to be installed. Note additional issues with Flux:
 
-* Does not catch extra props added in JSX (does catch missing props)
-* Fixed - Does not fail if we import a type which is not exported
+* Does not catch extra props added to a component in JSX (does catch missing props)
 * Have to manually update WrappedActionProps in actions.js
-* Don't have props typed on our containers (or those from react-bootstrap)
+* Don't have props typed on our containers created by connect
 * Redux type exports not picked up by eslint-import
 * {| |} seems not to work yet with out tool-chain
+* Comparing flow/Atom to Typescript/VS Code we lose mouseover docs and the better git support
 
 `Create-react-app` does not allow configuration of the eslint rules and is set up to ignore formatting inconsistencies. As we
 cannot override this and prefer a stricter linter, we provide an additional strict configuration which we run manually. Atom runs
@@ -21,35 +21,9 @@ the provided less-strict version.
 
 ## TODO
 
-* check redux types in more places
-* Add delete recipe confirmation modal?
+* Positioning of confirm modal
+* Code clean
 * Other tests?
-* Check markdown formatting of this file
-
-# Notes
-
-Compared to our TypeScript/VS Code setup
-* No docs on mouseover
-* No type checking of imports on libraries (e.g., using { } vs default, or importing from the wrong library)
-* Primitive git support
-
-## Design
-
-Hierarchy of containers/components
-* App
-  + RecipeBox
-    - RecipeName
-    - if selected: IngredientsList
-    - if selected: IngredientsControl
-    - if selected: IngredientsModal
-  + RecipeControls
-  + AddRecipeModal
-
-Application State:
-* `recipes`: `OrderedMap<string, ingredients>` where `ingredients` is a `List<string>`
-* `selectedRecipe` is the name of the recipe that is
-selected or null
-
 
 ## Steps followed to set up this project
 
