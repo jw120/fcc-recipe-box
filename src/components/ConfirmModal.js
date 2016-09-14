@@ -19,22 +19,18 @@ function ConfirmModal(props: Props): React.Element<*> {
     <Modal
       className='ConfirmModal'
       show={ props.show }
+      bsSize='small'
     >
       <Modal.Header>
-        <Modal.Title>Confirm deletion of recipe '{ props.recipe }'</Modal.Title>
+        <Modal.Title>Delete '{ props.recipe }'?</Modal.Title>
       </Modal.Header>
 
       <Modal.Footer>
-        <Button
-          onClick={ props.handleCancel }
-        >
+        <Button onClick={ props.handleCancel }>
           Cancel
         </Button>
-        <Button
-          onClick={ props.handleConfirm }
-          bsStyle='danger'
-        >
-          Confirm
+        <Button onClick={ props.handleConfirm } bsStyle='danger'>
+          Delete
         </Button>
       </Modal.Footer>
 
