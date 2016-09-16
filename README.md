@@ -18,12 +18,8 @@ Flow is now working with decent coverage - except for the some of the `react-boo
 cannot override this and prefer a stricter linter, we provide an additional strict configuration which we run manually. Atom runs
 the provided less-strict version.
 
-
-## TODO
-
-* Positioning of confirm modal
-* Code clean
-* Other tests?
+We lightly used `react-devtools` (via the chrome extension) in testing. Did not find a good way of activating this only when
+available that played nicely with flow (instead just commented out the line in `index.js`)
 
 ## Steps followed to set up this project
 

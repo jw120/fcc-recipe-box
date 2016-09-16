@@ -22,7 +22,7 @@ it('adds a recipe to an empty Map without mutation', () => {
 it('trims spaces and drops empty entries in ingredients when adding', () => {
   const input = Map()
   const output = recipes(input, addRecipe('A', 'x, y,  z z,,  ,'))
-  const expected = Map([['A', ['x', 'y', 'z z']]])
+  const expected = Map([['A', ['X', 'Y', 'Z z']]])
   expect(output).toEqual(expected)
 })
 

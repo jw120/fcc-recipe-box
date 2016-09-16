@@ -29,8 +29,8 @@ const initialState: { recipes: RecipesState } = {
 }
 
 const store = createStore(recipeBoxApp, initialState, compose(
-  applyMiddleware(mirrorChanges),
-  devToolsExtension ? devToolsExtension() : (f: *) => f
+  applyMiddleware(mirrorChanges)
+  // , devToolsExtension()
 ))
 
 render(
